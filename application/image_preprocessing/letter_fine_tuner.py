@@ -19,12 +19,10 @@ class LetterFineTuner(AbstractLetterFineTuner):
         rows = image_arr.shape[0]
         columns = image_arr.shape[1]
         point_a = {"x": image_arr.shape[0], "y": image_arr.shape[1]}
-        print (image_arr.shape)
-        print (image_arr)
         point_b = {"x": 0, "y": 0}
 
-        for row in range(0, rows-1):
-            for column in range(0, columns-1):
+        for row in range(0, rows - 1):
+            for column in range(0, columns - 1):
                 if image_arr[row][column] < gray_scale and point_a["x"] > row:
                     point_a["x"] = row
 
@@ -53,21 +51,22 @@ class LetterFineTuner(AbstractLetterFineTuner):
     def image_cropper(self, image_arr: np.ndarray, x: int, y: int, width: int, height: int):
         cropped_image = image_arr[x:width, y:height]
         image = im.fromarray(cropped_image)
-        print((str(FileStructure.CROPPED_IMAGES_PATH.value)))
-        print(str(FileStructure.CROPPED_IMAGES_PATH.value) + "\\img{}.png".format(
-            len(os.listdir(str(FileStructure.CROPPED_IMAGES_PATH.value)))))
         image.save(str(FileStructure.CROPPED_IMAGES_PATH.value) + "\\img{}.png".format(
             len(os.listdir(str(FileStructure.CROPPED_IMAGES_PATH.value)))))
         return cropped_image
 
-    def image_resizer(self, path: str):
-        return "hello world"
+    def image_resizer(self, image_arr: np.ndarray):
+        resized_image = cv2.resize(image_arr, (28, 28), cv2.INTER_AREA)
+        image = im.fromarray(resized_image)
+        image.save(str(FileStructure.RESIZED_IMAGES_PATH.value) + "\\img{}.png".format(
+            len(os.listdir(str(FileStructure.RESIZED_IMAGES_PATH.value)))))
+        return resized_image
 
     def letter_finder(self, file: UploadFile = File(...)):
         path = save_file(upload_file=file, destination=str(FileStructure.IMAGES_PATH.value))
         image_arr = image_loader(path=path)
         gray_scale = self.gray_scale_converter(image_arr=image_arr)
         coordinates = self.find_non_white_pixels(image_arr=gray_scale)
-        print(coordinates)
         cropped_image = self.image_cropper(image_arr=gray_scale, x=coordinates[0]["x"], y=coordinates[0]["y"],
                                            width=coordinates[1]["x"], height=coordinates[1]["y"])
+        resized_image = self.image_resizer(cropped_image)

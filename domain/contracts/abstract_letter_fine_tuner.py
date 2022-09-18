@@ -24,3 +24,4 @@ class AbstractLetterFineTuner(ABC):
     @abstractmethod
     def image_resizer(self, path: str):
         pass
+
