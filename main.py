@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-from api.controllers import health_check_controller, images_preprocessing_controller
+from api.controllers import health_check_controller, inference_controller
 
 app = FastAPI(version='1.0', title='IEA backend API',
               description="Provide different image preprocessing and features extraction")
@@ -19,7 +19,7 @@ app.include_router(
 )
 
 app.include_router(
-    router=images_preprocessing_controller.router,
+    router=inference_controller.router,
     prefix="/image_processing",
     tags=["image_processing"]
 )

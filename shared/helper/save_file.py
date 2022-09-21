@@ -10,8 +10,8 @@ def save_file(upload_file: UploadFile, destination: str) -> str:
         with open(destination + "\\" + upload_file.filename, "wb+") as file_object:
             shutil.copyfileobj(upload_file.file, file_object)
 
-    except Exception:
-        raise FilesException(additional_message="error while saving file to {}".format(destination))
+    except Exception as e:
+        raise FilesException(additional_message="error while saving file to {}; {}".format(destination, e.__str__()))
 
     # return {"info": f"file '{upload_file.filename}' saved at '{destination}'"}
     return destination + "\\" + upload_file.filename
