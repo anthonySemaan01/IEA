@@ -20,7 +20,7 @@ app.include_router(
 
 app.include_router(
     router=inference_controller.router,
-    prefix="/image_processing",
-    tags=["image_processing"]
+    prefix="",
+    tags=["inference"]
 )
 

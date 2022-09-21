@@ -2,9 +2,10 @@ import numpy as np
 import pandas as pd
 import scipy
 import cv2
+from domain.contracts.abstract_feature_extractor import AbstractFeatureExtractor
 
 
-class FeatureExtractor:
+class FeatureExtractor(AbstractFeatureExtractor):
 
     def get_total_pixels(self, path):
         img = cv2.imread(path)
@@ -337,71 +338,3 @@ class FeatureExtractor:
         sub_area = img[24:28, 24:28]
         sub_area = np.sum(sub_area == 0)
         return sub_area
-
-    def feature_generation(self):
-        folder_dir = "Image"
-        X_train = list()
-        vector = list()
-        for images in os.listdir(folder_dir):
-            if images in ["emnist-letters-test-images-idx3-ubyte", "test.png"]:
-                continue
-            path = f"Image\\{images}"
-            vector.append(self.get_total_pixels(path))
-            vector.append(self.get_total_blackpixels(path))
-            vector.append(self.get_total_white_pixels(path))
-            vector.append(self.get_total_left_pixels(path))
-            vector.append(self.get_total_right_pixels(path))
-            vector.append(self.get_total_up_pixels(path))
-            vector.append(self.get_total_down_pixels(path))
-            vector.append(self.get_sub_pixels1(path))
-            vector.append(self.get_sub_pixels2(path))
-            vector.append(self.get_sub_pixels3(path))
-            vector.append(self.get_sub_pixels4(path))
-            vector.append(self.get_sub_pixels5(path))
-            vector.append(self.get_sub_pixels6(path))
-            vector.append(self.get_sub_pixels7(path))
-            vector.append(self.get_sub_pixels8(path))
-            vector.append(self.get_sub_pixels9(path))
-            vector.append(self.get_sub_pixels10(path))
-            vector.append(self.get_sub_pixels11(path))
-            vector.append(self.get_sub_pixels12(path))
-            vector.append(self.get_sub_pixels13(path))
-            vector.append(self.get_sub_pixels14(path))
-            vector.append(self.get_sub_pixels15(path))
-            vector.append(self.get_sub_pixels16(path))
-            vector.append(self.get_sub_pixels17(path))
-            vector.append(self.get_sub_pixels18(path))
-            vector.append(self.get_sub_pixels19(path))
-            vector.append(self.get_sub_pixels20(path))
-            vector.append(self.get_sub_pixels21(path))
-            vector.append(self.get_sub_pixels22(path))
-            vector.append(self.get_sub_pixels23(path))
-            vector.append(self.get_sub_pixels24(path))
-            vector.append(self.get_sub_pixels25(path))
-            vector.append(self.get_sub_pixels26(path))
-            vector.append(self.get_sub_pixels27(path))
-            vector.append(self.get_sub_pixels28(path))
-            vector.append(self.get_sub_pixels29(path))
-            vector.append(self.get_sub_pixels30(path))
-            vector.append(self.get_sub_pixels31(path))
-            vector.append(self.get_sub_pixels32(path))
-            vector.append(self.get_sub_pixels33(path))
-            vector.append(self.get_sub_pixels34(path))
-            vector.append(self.get_sub_pixels35(path))
-            vector.append(self.get_sub_pixels36(path))
-            vector.append(self.get_sub_pixels37(path))
-            vector.append(self.get_sub_pixels38(path))
-            vector.append(self.get_sub_pixels39(path))
-            vector.append(self.get_sub_pixels40(path))
-            vector.append(self.get_sub_pixels41(path))
-            vector.append(self.get_sub_pixels42(path))
-            vector.append(self.get_sub_pixels43(path))
-            vector.append(self.get_sub_pixels44(path))
-            vector.append(self.get_sub_pixels45(path))
-            vector.append(self.get_sub_pixels46(path))
-            vector.append(self.get_sub_pixels47(path))
-            vector.append(self.get_sub_pixels48(path))
-            vector.append(self.get_sub_pixels49(path))
-            X_train.append(vector)
-            vector = list()
-        return X_train
