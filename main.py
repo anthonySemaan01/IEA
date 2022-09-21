@@ -3,7 +3,7 @@ from starlette.middleware.cors import CORSMiddleware
 from api.controllers import health_check_controller, inference_controller
 
 app = FastAPI(version='1.0', title='IEA backend API',
-              description="Provide different image preprocessing and features extraction")
+              description="Provide different image preprocessing and images-ubyte extraction")
 
 app.add_middleware(CORSMiddleware,
                    allow_origins=["*"],

@@ -6,8 +6,8 @@ from domain.models.file_structure import FileStructure
 def feature_generation() -> list:
     x_train = list()
     vector = list()
-    for images in os.listdir(str(FileStructure.TRAINING_IMAGES_PATH.value)):
-        path = f"Image\\{images}"
+    for image in os.listdir(str(FileStructure.TRAINING_IMAGES_PATH.value)):
+        path = str(FileStructure.TRAINING_IMAGES_PATH.value + "\\{}".format(image))
         vector.append(FeatureExtractor.get_total_pixels(path))
         vector.append(FeatureExtractor.get_total_black_pixels(path))
         vector.append(FeatureExtractor.get_total_white_pixels(path))
