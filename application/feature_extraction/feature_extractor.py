@@ -404,4 +404,4 @@ class FeatureExtractor:
             vector.append(self.get_sub_pixels49(path))
             X_train.append(vector)
             vector = list()
-            return vector
+        return X_train
