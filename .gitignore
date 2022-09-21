@@ -1,1 +1,3 @@
-/datasets
+/datasets/training/images-ubyte
+/datasets/training/images
+datasets/training/labels-ubyte
