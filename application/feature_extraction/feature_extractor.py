@@ -11,7 +11,7 @@ class FeatureExtractor(AbstractFeatureExtractor):
         img = cv2.imread(path)
         return img.size
 
-    def get_total_blackpixels(self, path):
+    def get_total_black_pixels(self, path):
         img = cv2.imread(path)
         number_of_black_pix = np.sum(img == 0)  # extracting only black pixels
         return number_of_black_pix

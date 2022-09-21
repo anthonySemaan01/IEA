@@ -9,7 +9,7 @@ def feature_generation() -> list:
     for images in os.listdir(str(FileStructure.TRAINING_IMAGES_PATH.value)):
         path = f"Image\\{images}"
         vector.append(FeatureExtractor.get_total_pixels(path))
-        vector.append(FeatureExtractor.get_total_blackpixels(path))
+        vector.append(FeatureExtractor.get_total_black_pixels(path))
         vector.append(FeatureExtractor.get_total_white_pixels(path))
         vector.append(FeatureExtractor.get_total_left_pixels(path))
         vector.append(FeatureExtractor.get_total_right_pixels(path))
