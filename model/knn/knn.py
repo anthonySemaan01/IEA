@@ -1,4 +1,10 @@
-from application.feature_extraction.feature_generation import feature_generation
+from application.feature_extraction.feature_extractor import FeatureExtractor
+from application.feature_extraction.feature_generation import feature_generation, feature_generation_test
+from shared.data_handler.data_handler import read_labels, get_letter_from_label
+
+TRAIN_DATA_FILENAME = "../../datasets/training/images-ubyte/emnist-letters-train-images-idx3-ubyte"
+TRAIN_LABELS_FILENAME = "../../datasets/training/labels-ubyte/emnist-letters-train-labels-idx1-ubyte"
+TEST_DATA_FILENAME = "../../datasets/testing/samples"  # Need to add sample file
 
 
 def bytes_to_int(byte_data):
@@ -9,7 +15,7 @@ def bytes_to_int(byte_data):
 def dist(x, y):  # returns sqrt( sum (  (Ai - Bi)^2  ))
     return sum(
         [
-            (bytes_to_int(x_i) - bytes_to_int(y_i)) ** 2 for x_i, y_i in zip(x, y)
+            (x_i - y_i) ** 2 for x_i, y_i in zip(x, y)
         ]
         # zip : x = [1, 2, 3], y = ['a', 'b', 'c'], zip(x, y) = [ [1, 'a'], [2, 'b'], [3, 'c'] ]   #here 1 and a are PIXELS THAT WE WILL COMPARE
     )
@@ -26,12 +32,8 @@ def get_most_frequent_element(l):
                key=l.count)  # counts how many times an element is present in a list : l [1, 1, 2] --> l.count [2, 2, 1] 1 is present 2 times, 1 is present 2 times, 2 is present 1 time
 
 
-X_train = feature_generation()
-y_train = ''
-
-
 def knn(X_train, y_train, X_test,
-        k=3):  # for our point, it looks at ALL OTHER points, calculates distance with them, and takes the point with the smallest DISTANCE    | k : see which one returns best result (better as an odd parameter for no confusion if for example we have 2 classes and a point is confusing, but here we have a lot of classes)
+        k):  # for our point, it looks at ALL OTHER points, calculates distance with them, and takes the point with the smallest DISTANCE    | k : see which one returns best result (better as an odd parameter for no confusion if for example we have 2 classes and a point is confusing, but here we have a lot of classes)
     # 1) Comparing xtest sample with all xtrain elements
     # 2) saving top k candidates' indexes from xtrain
     # 3) getting the candidtates from ytrain
@@ -60,3 +62,21 @@ def knn(X_train, y_train, X_test,
         # 4)
         y_pred.append(top_candidate)
     return y_pred
+
+
+if __name__ == '__main__':
+    X_train = feature_generation()
+    y_train = read_labels(TRAIN_LABELS_FILENAME, 20800)
+    X_test = feature_generation_test()
+    k = 5
+    y_pred = knn(X_train, y_train, X_test, k)
+
+    alphabets_pred = [
+        get_letter_from_label(label)
+        for label in y_pred
+    ]
+
+    print(alphabets_pred)
+    # X_train = read_images(TRAIN_DATA_FILENAME, 20800)
+    # for idx, test_sample in enumerate(X_train):
+    #     write_image(test_sample, "../../datasets/training/images/content" + f"/{idx}.png")
