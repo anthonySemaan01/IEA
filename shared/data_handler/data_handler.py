@@ -45,4 +45,4 @@ def read_images(filename, n_max_images=None):  # we are reading images-ubyte pix
 if __name__ == '__main__':
     X_train = read_images(TRAIN_DATA_FILENAME, 10000)
     for idx, test_sample in enumerate(X_train):
-        write_image(test_sample, "../../datasets/training/images" + f"/{idx}.png")
+        write_image(test_sample, "../../datasets/training/images/content" + f"/{idx}.png")
