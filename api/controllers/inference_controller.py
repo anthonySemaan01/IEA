@@ -1,21 +1,24 @@
 import io
-
+import numpy as np
 from fastapi import APIRouter, UploadFile, File, Response
-from domain.exceptions.image_preprocessing_exception import ImagePreprocessingException
 from persistence.repositories.api_response import ApiResponse
-from containers import Services
+from application.feature_extraction.feature_generation_testing import feature_generation_test
+from domain.exceptions.feature_generation_exception import FeatureGeneration
+from domain.exceptions.feature_extraction_exception import FeatureExtraction
 
 router = APIRouter()
-letter_fine_tuner = Services.letter_fine_tuner()
 
 
 @router.post('/inference')
-async def predictions(file: UploadFile = File(...)):
+async def predictions():
     try:
-        letter_fine_tuner.letter_finder(file=file)
+        vector = feature_generation_test()
+
+    except FeatureExtraction as e:
+        return ApiResponse(success=False, error=e.__str__())
+    except FeatureGeneration as e:
+        return ApiResponse(success=False, error=e.__str__())
     except Exception as e:
         return ApiResponse(success=False, error=e.__str__())
-    except ImagePreprocessingException as e:
-        return ApiResponse(success=False, error=e.__str__())
 
-    return ApiResponse(data="Done")
+    return ApiResponse(data=str(vector))

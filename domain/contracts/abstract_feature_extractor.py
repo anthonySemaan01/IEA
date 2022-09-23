@@ -3,9 +3,6 @@ from abc import ABC
 
 class AbstractFeatureExtractor(ABC):
 
-    def get_total_pixels(self, path) -> int:
-        pass
-
     def get_total_black_pixels(self, path) -> int:
         pass
 

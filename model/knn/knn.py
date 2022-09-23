@@ -1,5 +1,5 @@
 from application.feature_extraction.feature_extractor import FeatureExtractor
-from application.feature_extraction.feature_generation import feature_generation, feature_generation_test
+from application.feature_extraction.feature_generation_training import feature_generation, feature_generation_test
 from shared.data_handler.data_handler import read_labels, get_letter_from_label
 
 TRAIN_DATA_FILENAME = "../../datasets/training/images-ubyte/emnist-letters-train-images-idx3-ubyte"
