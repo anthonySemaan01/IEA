@@ -16,7 +16,7 @@ class KNN:
         df = pd.read_csv(str(FileStructure.VECTOR_PATH.value))
         y_train = df.iloc[:, -1].to_numpy()
         x_train = df.drop(df.columns[-1], axis=1)
-        x_train = x_train.drop(x_train.columns[0], axis=)
+        x_train = x_train.drop(x_train.columns[0], axis=1)
         x_train = x_train.to_numpy()
         print("x_train", x_train)
         knn = KNeighborsClassifier(n_neighbors=7)
