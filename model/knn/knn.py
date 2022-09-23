@@ -7,11 +7,6 @@ import pandas as pd
 from domain.models.file_structure import FileStructure
 from shared.data_handler.letter_matcher import alphabet_decoding
 
-
-# TRAIN_DATA_FILENAME = "../../datasets/training/images-ubyte/emnist-letters-train-images-idx3-ubyte"
-# TRAIN_LABELS_FILENAME = "../../datasets/training/labels-ubyte/emnist-letters-train-labels-idx1-ubyte"
-# TEST_DATA_FILENAME = "../../datasets/testing/samples"  # Need to add sample file
-
 class KNN:
 
     def infer(self, x_test) -> str:
