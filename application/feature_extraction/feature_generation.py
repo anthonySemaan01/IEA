@@ -1,4 +1,7 @@
 import os
+
+import pandas as pd
+
 from application.feature_extraction.feature_extractor import FeatureExtractor
 from domain.models.file_structure import FileStructure
 
@@ -72,6 +75,8 @@ def feature_generation() -> list:
         vector.append(extractor.get_sub_pixels49(path))
         x_train.append(vector)
         vector = list()
+    saved_x_train = pd.DataFrame(x_train)
+    saved_x_train.to_csv('../../datasets/training/vector/features.csv')
     return x_train
 
 

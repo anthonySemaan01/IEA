@@ -66,17 +66,18 @@ def knn(X_train, y_train, X_test,
 
 if __name__ == '__main__':
     X_train = feature_generation()
-    y_train = read_labels(TRAIN_LABELS_FILENAME, 20800)
-    X_test = feature_generation_test()
-    k = 5
-    y_pred = knn(X_train, y_train, X_test, k)
+    # y_train = read_labels(TRAIN_LABELS_FILENAME, 20800)
+    # X_test = feature_generation_test()
+    # k = 5
+    # y_pred = knn(X_train, y_train, X_test, k)
+    #
+    # alphabets_pred = [
+    #     get_letter_from_label(label)
+    #     for label in y_pred
+    # ]
+    #
+    # print(alphabets_pred)
 
-    alphabets_pred = [
-        get_letter_from_label(label)
-        for label in y_pred
-    ]
-
-    print(alphabets_pred)
     # X_train = read_images(TRAIN_DATA_FILENAME, 20800)
     # for idx, test_sample in enumerate(X_train):
     #     write_image(test_sample, "../../datasets/training/images/content" + f"/{idx}.png")
