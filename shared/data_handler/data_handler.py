@@ -5,6 +5,7 @@ import numpy as np
 DATASET = ''  # 'mnist' or 'extended-mnist' or 'extended-mnist-letters'
 DATA_DIR = ''
 TRAIN_DATA_FILENAME = "../../datasets/training/images-ubyte/emnist-letters-train-images-idx3-ubyte"
+TRAIN_LABELS_FILENAME = "../../datasets/training/labels-ubyte/emnist-letters-train-labels-idx1-ubyte"
 
 
 def read_image(path):
@@ -42,7 +43,27 @@ def read_images(filename, n_max_images=None):  # we are reading images-ubyte pix
     return images
 
 
+def read_labels(filename, n_max_labels=None):
+    labels = []
+    with open(filename, 'rb') as f:
+        _ = bytes_to_int(f.read(4))  # 4 because each sample is of 32 bits == 4 bytes
+        n_labels = bytes_to_int(f.read(4))
+        if n_max_labels:
+            n_labels = n_max_labels
+        for label_idx in range(n_labels):
+            label = bytes_to_int(f.read(1))
+            labels.append(label)
+    return labels
+
+
+def get_letter_from_label(label):
+    alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+                'V', 'W', 'X', 'Y', 'Z']
+    return alphabet[label - 1]
+
+
 if __name__ == '__main__':
     X_train = read_images(TRAIN_DATA_FILENAME, 10000)
+    y_train = read_labels(TRAIN_LABELS_FILENAME, 10000)
     for idx, test_sample in enumerate(X_train):
         write_image(test_sample, "../../datasets/training/images/content" + f"/{idx}.png")
