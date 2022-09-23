@@ -405,7 +405,7 @@ class FeatureExtractor(AbstractFeatureExtractor):
                 vector.append(self.get_sub_pixels47(path))
                 vector.append(self.get_sub_pixels48(path))
                 vector.append(self.get_sub_pixels49(path))
-                output_vector.append(vector)
+                output_vector = vector
             except Exception as e:
                 raise FeatureExtraction(additional_message=e.__str__())
 
