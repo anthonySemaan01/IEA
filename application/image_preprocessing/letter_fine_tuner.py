@@ -18,7 +18,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
 
     def find_non_white_pixels(self, image_arr: np.ndarray) -> list:
         try:
-            gray_scale = 50
+            gray_scale = 200
             rows = image_arr.shape[0]
             columns = image_arr.shape[1]
             point_a = {"x": image_arr.shape[0], "y": image_arr.shape[1]}
@@ -26,16 +26,16 @@ class LetterFineTuner(AbstractLetterFineTuner):
 
             for row in range(0, rows - 1):
                 for column in range(0, columns - 1):
-                    if image_arr[row][column] > gray_scale and point_a["x"] > row:
+                    if image_arr[row][column] <= gray_scale and point_a["x"] > row:
                         point_a["x"] = row
 
-                    if image_arr[row][column] > gray_scale and point_a["y"] > column:
+                    if image_arr[row][column] <= gray_scale and point_a["y"] > column:
                         point_a["y"] = column
 
-                    if image_arr[row][column] > gray_scale and point_b["x"] < row:
+                    if image_arr[row][column] <= gray_scale and point_b["x"] < row:
                         point_b["x"] = row
 
-                    if image_arr[row][column] > gray_scale and point_b["y"] < column:
+                    if image_arr[row][column] <= gray_scale and point_b["y"] < column:
                         point_b["y"] = column
 
             out = list()
@@ -57,6 +57,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
         except Exception as e:
             print(e.__str__())
             raise ImagePreprocessingException(additional_message="error while converting to gray-scale")
+        print("gray scale: ", gray_scale)
         return gray_scale, gray_scale_path
 
     def image_cropper(self, image_arr: np.ndarray, x: int, y: int, width: int, height: int) -> tuple[np.ndarray, str]:

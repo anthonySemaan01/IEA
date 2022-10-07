@@ -1,4 +1,3 @@
-from application.feature_extraction.feature_generation_testing import FeatureExtractor
 from model.knn.knn import KNN
 
 

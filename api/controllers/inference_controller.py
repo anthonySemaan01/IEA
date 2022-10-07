@@ -1,5 +1,3 @@
-import io
-import numpy as np
 from fastapi import APIRouter, UploadFile, File, Response
 from persistence.repositories.api_response import ApiResponse
 from application.feature_extraction.feature_generation_testing import feature_generation_test
