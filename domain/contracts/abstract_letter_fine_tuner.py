@@ -10,7 +10,7 @@ class AbstractLetterFineTuner(ABC):
         pass
 
     @abstractmethod
-    def gray_scale_converter(self, image_arr: np.ndarray) -> np.ndarray:
+    def black_white_converter(self, image_arr: np.ndarray) -> np.ndarray:
         pass
 
     @abstractmethod

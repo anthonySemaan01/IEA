@@ -47,26 +47,25 @@ class LetterFineTuner(AbstractLetterFineTuner):
 
         return out
 
-    def gray_scale_converter(self, image_arr: np.ndarray) -> tuple[np.ndarray, str]:
+    def black_white_converter(self, image_arr: np.ndarray) -> tuple[np.ndarray, str]:
         try:
             gray_scale = cv2.cvtColor(image_arr, cv2.COLOR_BGR2GRAY)
-            image = im.fromarray(gray_scale)
+            (thresh, im_bw) = cv2.threshold(gray_scale, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
             gray_scale_path = str(FileStructure.GRAY_SCALE_IMAGES_PATH.value) + "\\img{}.png".format(
                 len(os.listdir(str(FileStructure.GRAY_SCALE_IMAGES_PATH.value))))
-            image.save(gray_scale_path)
+            # image.save(gray_scale_path)
+            cv2.imwrite(gray_scale_path, im_bw)
         except Exception as e:
             print(e.__str__())
             raise ImagePreprocessingException(additional_message="error while converting to gray-scale")
-        print("gray scale: ", gray_scale)
-        return gray_scale, gray_scale_path
+        return im_bw, gray_scale_path
 
     def image_cropper(self, image_arr: np.ndarray, x: int, y: int, width: int, height: int) -> tuple[np.ndarray, str]:
         try:
             cropped_image = image_arr[x:width, y:height]
-            image = im.fromarray(cropped_image)
             cropped_image_path = str(FileStructure.CROPPED_IMAGES_PATH.value) + "\\img{}.png".format(
                 len(os.listdir(str(FileStructure.CROPPED_IMAGES_PATH.value))))
-            image.save(cropped_image_path)
+            cv2.imwrite(cropped_image_path, cropped_image)
         except Exception as e:
             print(e.__str__())
             raise ImagePreprocessingException(additional_message="error while cropping image")
@@ -74,25 +73,44 @@ class LetterFineTuner(AbstractLetterFineTuner):
 
     def image_resizer(self, image_arr: np.ndarray) -> tuple[np.ndarray, str]:
         try:
-            resized_image = cv2.resize(image_arr, (28, 28), cv2.INTER_AREA)
-            image = im.fromarray(resized_image)
+            resized_image = cv2.resize(image_arr, (32, 32), cv2.INTER_AREA)
             resized_image_path = str(FileStructure.RESIZED_IMAGES_PATH.value) + "\\img{}.png".format(
                 len(os.listdir(str(FileStructure.RESIZED_IMAGES_PATH.value))))
-            image.save(resized_image_path)
+            cv2.imwrite(resized_image_path, resized_image)
         except Exception as e:
             print(e.__str__())
             raise ImagePreprocessingException(additional_message="error while resizing image")
         return resized_image, resized_image_path
 
+    def erosion_dilation(self, image_arr: np.ndarray) -> tuple[np.ndarray, str]:
+        invert: np.ndarray = 255 - image_arr
+        kernel = np.ones((5, 5), np.uint8)
+        try:
+            eroded = cv2.erode(image_arr, kernel, iterations=1)
+            dilated = cv2.dilate(eroded, kernel, iterations=1)
+            dilated = 255 - dilated
+            eroded_dilated_path = str(FileStructure.ERODED_DILATED_PATH.value) + "\\img{}.png".format(
+                len(os.listdir(str(FileStructure.ERODED_DILATED_PATH.value))))
+            cv2.imwrite(eroded_dilated_path, dilated)
+        except Exception as e:
+            print(e)
+            print(e.__str__())
+            raise ImagePreprocessingException(additional_message="error while eroding/dilating image")
+        return dilated, eroded_dilated_path
+
     def letter_finder(self, file: UploadFile = File(...)) -> tuple[ndarray, str]:
         path = save_file(upload_file=file, destination=str(FileStructure.IMAGES_PATH.value))
         image_arr = image_loader(path=path)
-        gray_scale, gray_scale_path = self.gray_scale_converter(image_arr=image_arr)
+        gray_scale, gray_scale_path = self.black_white_converter(image_arr=image_arr)
         coordinates = self.find_non_white_pixels(image_arr=gray_scale)
         cropped_image, cropped_image_path = self.image_cropper(image_arr=gray_scale, x=coordinates[0]["x"],
                                                                y=coordinates[0]["y"],
-                                           width=coordinates[1]["x"], height=coordinates[1]["y"])
-        resized_image, resized_image_path = self.image_resizer(cropped_image)
-        image_resized = im.fromarray(resized_image)
-        image_resized.save(str(FileStructure.TESTING_IMAGES_PATH.value) + "\\tester.png")
-        return resized_image, resized_image_path
+                                                               width=coordinates[1]["x"], height=coordinates[1]["y"])
+        resized_image, resized_image_path = self.image_resizer(image_arr=cropped_image)
+        dilated_arr, eroded_dilated_path = self.erosion_dilation(image_arr=resized_image)
+        image_out = im.fromarray(dilated_arr)
+        image_out.save(str(FileStructure.TESTING_IMAGES_PATH.value) + "\\tester.png")
+        output_path = str(FileStructure.PROCESSED_PATH.value) + "\\img{}.png".format(
+            len(os.listdir(str(FileStructure.PROCESSED_PATH.value))))
+        image_out.save(output_path)
+        return dilated_arr, output_path

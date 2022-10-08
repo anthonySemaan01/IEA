@@ -26,3 +26,5 @@ async def predictions(file: UploadFile = File(...)):
         return ApiResponse(success=False, error=e.__str__())
     except Exception as e:
         return ApiResponse(success=False, error=e.__str__())
+
+

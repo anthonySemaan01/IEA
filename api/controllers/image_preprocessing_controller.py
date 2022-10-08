@@ -4,6 +4,7 @@ from fastapi import APIRouter, UploadFile, File, Response
 from domain.exceptions.image_preprocessing_exception import ImagePreprocessingException
 from persistence.repositories.api_response import ApiResponse
 from containers import Services
+from application.image_preprocessing.training_dataset_processor import letter_finder
 
 router = APIRouter()
 letter_fine_tuner = Services.letter_fine_tuner()
@@ -22,3 +23,6 @@ async def predictions(file: UploadFile = File(...)):
     return ApiResponse(data=output_image_path)
 
 
+@router.get("/preprocess_training_Dataset")
+async def preprocess_training(path: str):
+    letter_finder(path)

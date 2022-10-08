@@ -12,17 +12,14 @@ class KNN:
     def infer(self, x_test) -> str:
         x_test_np = np.array(x_test)
         x_test_np = x_test_np.reshape(1, -1)
-        print(x_test_np.shape)
         df = pd.read_csv(str(FileStructure.VECTOR_PATH.value))
         y_train = df.iloc[:, -1].to_numpy()
         x_train = df.drop(df.columns[-1], axis=1)
         x_train = x_train.drop(x_train.columns[0], axis=1)
         x_train = x_train.to_numpy()
-        print("x_train", x_train)
         knn = KNeighborsClassifier(n_neighbors=7)
         knn.fit(x_train, y_train)
         y_pred = knn.predict(x_test_np)
-        print(y_pred)
         letter = alphabet_decoding(str(y_pred[0]))
         print(letter)
 
