@@ -7,9 +7,10 @@ from application.feature_extraction.feature_extractor import FeatureExtractor
 
 class Services(containers.DeclarativeContainer):
 
-    # extractor
+    # extractor : preprocessing stage
     letter_fine_tuner = providers.Factory(
         AbstractLetterFineTuner.register(LetterFineTuner))
 
+    # extracts features vectors
     feature_generation = providers.Factory(
         AbstractFeatureExtractor.register(FeatureExtractor))
