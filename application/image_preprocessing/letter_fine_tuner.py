@@ -88,7 +88,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
         try:
             eroded = cv2.erode(image_arr, kernel, iterations=1)
             dilated = cv2.dilate(eroded, kernel, iterations=1)
-            dilated = 255 - dilated
+            # dilated = 255 - dilated
             eroded_dilated_path = str(FileStructure.ERODED_DILATED_PATH.value) + "\\img{}.png".format(
                 len(os.listdir(str(FileStructure.ERODED_DILATED_PATH.value))))
             cv2.imwrite(eroded_dilated_path, dilated)

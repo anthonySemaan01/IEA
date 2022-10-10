@@ -12,7 +12,7 @@ from domain.exceptions.feature_extraction_exception import FeatureExtraction
 # np.set_printoptions(threshold=sys.maxsize)
 
 class FeatureExtractor(AbstractFeatureExtractor):
-    threshold = 0
+    threshold = 127 # Below is black, above is whhite since values are alread Grayscaled
 
     def __init__(self, path):
         self.path = path
@@ -20,23 +20,27 @@ class FeatureExtractor(AbstractFeatureExtractor):
     # 1 White/Black
     def get_total_black_pixels(self, path):
         img = cv2.imread(path)
-        number_of_black_pix = np.sum(img == 0)  # extracting only black pixels
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        number_of_black_pix = np.sum(img <= self.threshold)  # extracting only black pixels
         return number_of_black_pix
 
     def get_total_white_pixels(self, path):
         img = cv2.imread(path)
-        number_of_white_pix = np.sum(img == 255)  # extracting only white pixels
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        number_of_white_pix = np.sum(img > self.threshold)  # extracting only white pixels
         return number_of_white_pix
     
     # 2 Left / Right 
     def get_total_left_pixels(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         total_left = img[:, :16]
         total_left = np.sum( total_left <= self.threshold)  # return total black pixels in that zone # white background, black writing line
         return total_left
 
     def get_total_right_pixels(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         total_right = img[:, 16:] 
         total_right = np.sum(total_right <= self.threshold)
         return total_right
@@ -44,12 +48,14 @@ class FeatureExtractor(AbstractFeatureExtractor):
     # 3 Up / Down
     def get_total_up_pixels(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         total_up = img[:16, :]
         total_up = np.sum(total_up <= self.threshold) 
         return total_up
 
     def get_total_down_pixels(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         total_down = img[16:, :]
         total_down = np.sum(total_down <= self.threshold) 
         return total_down
@@ -57,6 +63,7 @@ class FeatureExtractor(AbstractFeatureExtractor):
     # 4 Horizontal four zones
     def get_total_up_left_pixels_horizontal(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         col_min = 0
         col_max = 32
         row_min = 0
@@ -72,6 +79,7 @@ class FeatureExtractor(AbstractFeatureExtractor):
 
     def get_total_down_right_pixels_horizontal(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         col_min = 24
         col_max = 32
         row_min = 0
@@ -87,6 +95,7 @@ class FeatureExtractor(AbstractFeatureExtractor):
 
     def get_total_up_right_pixels_horizontal(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         col_min = 0
         col_max = 8
         row_min = 0
@@ -102,6 +111,7 @@ class FeatureExtractor(AbstractFeatureExtractor):
 
     def get_total_down_left_pixels_horizontal(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         col_min = 0
         col_max = 8
         row_min = 24
@@ -118,24 +128,28 @@ class FeatureExtractor(AbstractFeatureExtractor):
     # 5 cols traverse
     def get_nb_of_black_pixels_col1(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         col1 = img[0:32, 0:8]
         nb_black_pixels = np.sum(col1 <= self.threshold)
         return nb_black_pixels
     
     def get_nb_of_black_pixels_col2(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         col1 = img[0:32, 8:16]
         nb_black_pixels = np.sum(col1 <= self.threshold)
         return nb_black_pixels
     
     def get_nb_of_black_pixels_col3(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         col1 = img[0:32, 16:24]
         nb_black_pixels = np.sum(col1 <= self.threshold)
         return nb_black_pixels
     
     def get_nb_of_black_pixels_col4(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         col1 = img[0:32, 24:32]
         nb_black_pixels = np.sum(col1 <= self.threshold)
         return nb_black_pixels
@@ -143,24 +157,28 @@ class FeatureExtractor(AbstractFeatureExtractor):
     # 6 rows traverse
     def get_nb_of_black_pixels_row1(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         row1 = img[0:8, 0:32]
         nb_black_pixels = np.sum(row1 <= self.threshold)
         return nb_black_pixels
     
     def get_nb_of_black_pixels_row2(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         row2 = img[8:16, 0:32]
         nb_black_pixels = np.sum(row2 <= self.threshold)
         return nb_black_pixels
     
     def get_nb_of_black_pixels_row3(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         row3 = img[16:24, 0:32]
         nb_black_pixels = np.sum(row3 <= self.threshold)
         return nb_black_pixels
     
     def get_nb_of_black_pixels_row4(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         row4 = img[24:32, 0:32]
         nb_black_pixels = np.sum(row4 <= self.threshold)
         return nb_black_pixels
@@ -168,42 +186,49 @@ class FeatureExtractor(AbstractFeatureExtractor):
     # 7 Horizontal traverse
     def get_nb_of_black_pixels_diag1(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         diag1 = np.diag(img, -1)
         nb_black_pixels = np.sum(diag1 <= self.threshold)
         return nb_black_pixels
     
     def get_nb_of_black_pixels_diag2(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         diag1 = np.diag(img, -2)
         nb_black_pixels = np.sum(diag1 <= self.threshold)
         return nb_black_pixels
 
     def get_nb_of_black_pixels_diag3(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         diag1 = np.diag(img, -3)
         nb_black_pixels = np.sum(diag1 <= self.threshold)
         return nb_black_pixels      
         
     def get_nb_of_black_pixels_diag4(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         diag1 = np.diag(img)
         nb_black_pixels = np.sum(diag1 <= self.threshold)
         return nb_black_pixels
     
     def get_nb_of_black_pixels_diag5(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         diag1 = np.diag(img, 1)
         nb_black_pixels = np.sum(diag1 <= self.threshold)
         return nb_black_pixels
     
     def get_nb_of_black_pixels_diag6(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         diag1 = np.diag(img, 2)
         nb_black_pixels = np.sum(diag1 <= self.threshold)
         return nb_black_pixels
     
     def get_nb_of_black_pixels_diag7(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         diag1 = np.diag(img, 3)
         nb_black_pixels = np.sum(diag1 <= self.threshold)
         return nb_black_pixels
@@ -211,96 +236,112 @@ class FeatureExtractor(AbstractFeatureExtractor):
     #  8 Nb of Black pixels in each sub area
     def get_sub_pixels1(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[:8, :8]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels2(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[8:16, :8]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels3(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[16:24, :8]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels4(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[24:32, :8]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels5(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[:8, 8:16]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels6(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[8:16, 8:16]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels7(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[16:24, 8:16]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels8(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[24:32, 8:16]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels9(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[:8, 16:24]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels10(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[8:16, 16:24]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels11(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[16:24, 16:24]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels12(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[24:32, 16:24]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels13(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[0:8, 24:32]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels14(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[8:16, 24:32]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels15(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[16:24, 24:32]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
     def get_sub_pixels16(self, path):
         img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         sub_area = img[24:32, 24:32]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
@@ -310,7 +351,7 @@ class FeatureExtractor(AbstractFeatureExtractor):
         arr = cv2.imread(path)
         arr = cv2.cvtColor(arr, cv2.COLOR_BGR2GRAY)
         arr = 255 - arr
-        print(arr)
+        # print(arr)
         features = []
         zones: List[np.ndarray] = []
         zone_1 = arr[0:8, 0:8]
