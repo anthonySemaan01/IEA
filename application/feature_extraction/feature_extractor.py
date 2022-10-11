@@ -1,3 +1,4 @@
+
 from typing import List
 
 import numpy as np
@@ -346,7 +347,539 @@ class FeatureExtractor(AbstractFeatureExtractor):
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
-    # 9 directional distribution
+    # 9 Number of black pixels in each ROW OF EACH SUBAREA
+    def get_sub_pixels1_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, :8]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+
+    def get_sub_pixels2_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, :8]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+
+    def get_sub_pixels3_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, :8]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+
+    def get_sub_pixels4_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, :8]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+    
+    def get_sub_pixels5_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, 8:16]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+    
+    def get_sub_pixels6_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 8:16]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+    
+    def get_sub_pixels7_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 8:16]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+    
+    def get_sub_pixels8_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 8:16]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+    
+    def get_sub_pixels9_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, 16:24]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+
+    def get_sub_pixels10_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 16:24]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+
+    def get_sub_pixels11_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 16:24]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+
+    def get_sub_pixels12_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 16:24]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+
+    def get_sub_pixels13_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[0:8, 24:32]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+
+    def get_sub_pixels14_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 24:32]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+
+    def get_sub_pixels15_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 24:32]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels
+
+    def get_sub_pixels16_rows(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 24:32]
+        rows_black_pixels = []
+        for row_idx in range(0,8):
+            row = sub_area[row_idx]
+            nb_of_black_pixels = np.sum(row <= self.threshold)
+            rows_black_pixels.append(nb_of_black_pixels)
+        return rows_black_pixels 
+
+
+    # 10 Number of black pixels in each COLUMN OF EACH SUBAREA
+    def get_sub_pixels1_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, :8]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+
+    def get_sub_pixels2_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, :8]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+
+    def get_sub_pixels3_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, :8]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+
+    def get_sub_pixels4_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, :8]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+
+    def get_sub_pixels5_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, 8:16]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+
+    def get_sub_pixels6_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 8:16]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+    
+    def get_sub_pixels7_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 8:16]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+    
+    def get_sub_pixels8_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 8:16]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+    
+    def get_sub_pixels9_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, 16:24]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+    
+    def get_sub_pixels10_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 16:24]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+    
+    def get_sub_pixels11_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 16:24]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+    
+    def get_sub_pixels12_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 16:24]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+    
+    def get_sub_pixels13_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[0:8, 24:32]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+    
+    def get_sub_pixels14_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 24:32]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+    
+    def get_sub_pixels15_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 24:32]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+    
+    def get_sub_pixels16_cols(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 24:32]
+        cols_black_pixels = []
+        for col_idx in range(0,8):
+            col = sub_area[:, col_idx]
+            nb_of_black_pixels = np.sum(col <= self.threshold)
+            cols_black_pixels.append(nb_of_black_pixels)
+        return cols_black_pixels
+    
+    # 11 Number of black pixels in each HORIZONTAL TRAVERSE OF EACH SUBAREA
+    def get_sub_pixels1_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, :8]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels2_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, :8]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels3_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, :8]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels4_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, :8]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels5_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, 8:16]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels6_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 8:16]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels7_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 8:16]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels8_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 8:16]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels9_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, 16:24]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels10_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 16:24]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels11_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 16:24]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels12_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 16:24]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels13_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[0:8, 24:32]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels14_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 24:32]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels15_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 24:32]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    def get_sub_pixels16_horiz(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 24:32]
+        horiz_black_pixels = []
+        for horiz_idx in range(-7,8):
+            horiz = np.diag(sub_area, horiz_idx)
+            nb_of_black_pixels = np.sum(horiz <= self.threshold)
+            horiz_black_pixels.append(nb_of_black_pixels)
+        return horiz_black_pixels
+    
+    # 12 directional distribution
     def compute_directional_distribution(self, path) -> list:
         arr = cv2.imread(path)
         arr = cv2.cvtColor(arr, cv2.COLOR_BGR2GRAY)
@@ -475,9 +1008,206 @@ class FeatureExtractor(AbstractFeatureExtractor):
                 vector.append(self.get_sub_pixels15(path))
                 vector.append(self.get_sub_pixels16(path))
 
+                for x in range(0, 8):
+                    res = self.get_sub_pixels1_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels2_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels3_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels4_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels5_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels6_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels7_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels8_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels9_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels10_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels11_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels12_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels13_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels14_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels15_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels16_rows(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels1_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels2_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels3_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels4_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels5_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels6_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels7_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels8_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels9_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels10_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels11_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels12_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels13_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels14_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels15_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(0, 8):
+                    res = self.get_sub_pixels16_cols(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels1_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels2_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels3_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels4_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels5_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels6_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels7_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels8_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels9_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels10_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels11_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels12_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels13_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels14_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels15_horiz(path)[x]
+                    vector.append(res)
+                
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels16_horiz(path)[x]
+                    vector.append(res)
+                
+
+
                 features = self.compute_directional_distribution(path)
                 for feature in features:
                     vector.append(feature)
+
+                print(len(vector))
+
                 output_vector = vector
 
             except Exception as e:
