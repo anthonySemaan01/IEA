@@ -11,7 +11,9 @@ from containers import Services
 extractor = Services.feature_generation(FileStructure.TESTING_IMAGES_PATH.value)
 
 
-def feature_generation_test(retrain: bool = False):
+def feature_generation_test(retrain: bool = False, output_label: str = ""):
+    # TODO
+    # Add the output label to the dataframe
     try:
         x_test: list = extractor.extract_features(path_to_directory=extractor.path)
         if retrain:

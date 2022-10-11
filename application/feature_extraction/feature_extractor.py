@@ -13,7 +13,7 @@ from domain.exceptions.feature_extraction_exception import FeatureExtraction
 # np.set_printoptions(threshold=sys.maxsize)
 
 class FeatureExtractor(AbstractFeatureExtractor):
-    threshold = 127 # Below is black, above is whhite since values are alread Grayscaled
+    threshold = 127 # Below is black, above is white since values are already Grayscale
 
     def __init__(self, path):
         self.path = path
@@ -36,7 +36,8 @@ class FeatureExtractor(AbstractFeatureExtractor):
         img = cv2.imread(path)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         total_left = img[:, :16]
-        total_left = np.sum( total_left <= self.threshold)  # return total black pixels in that zone # white background, black writing line
+        total_left = np.sum( total_left <= self.threshold)  # return total black pixels in that zone # white
+        # background, black writing line
         return total_left
 
     def get_total_right_pixels(self, path):

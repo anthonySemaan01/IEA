@@ -45,16 +45,14 @@ def image_cropper(image_arr: np.ndarray, x: int, y: int, width: int, height: int
 
 
 def image_resizer(image_arr: np.ndarray) -> np.ndarray:
-    resized_image = cv2.resize(image_arr, (48, 48), cv2.INTER_AREA)
+    resized_image = cv2.resize(image_arr, (32, 32), cv2.INTER_AREA)
     return resized_image
 
 
 def erosion_dilation(image_arr: np.ndarray) -> np.ndarray:
-    invert: np.ndarray = 255 - image_arr
     kernel = np.ones((5, 5), np.uint8)
-    eroded = cv2.erode(invert, kernel, iterations=1)
+    eroded = cv2.erode(image_arr, kernel, iterations=1)
     dilated = cv2.dilate(eroded, kernel, iterations=1)
-    dilated = 255 - dilated
     return dilated
 
 

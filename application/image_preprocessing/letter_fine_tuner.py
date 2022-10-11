@@ -83,12 +83,10 @@ class LetterFineTuner(AbstractLetterFineTuner):
         return resized_image, resized_image_path
 
     def erosion_dilation(self, image_arr: np.ndarray) -> tuple[np.ndarray, str]:
-        invert: np.ndarray = 255 - image_arr
         kernel = np.ones((5, 5), np.uint8)
         try:
             eroded = cv2.erode(image_arr, kernel, iterations=1)
             dilated = cv2.dilate(eroded, kernel, iterations=1)
-            # dilated = 255 - dilated
             eroded_dilated_path = str(FileStructure.ERODED_DILATED_PATH.value) + "\\img{}.png".format(
                 len(os.listdir(str(FileStructure.ERODED_DILATED_PATH.value))))
             cv2.imwrite(eroded_dilated_path, dilated)
