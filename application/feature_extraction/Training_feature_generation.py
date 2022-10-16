@@ -8,7 +8,7 @@ from shared.helper.csv_file_writer import write_training_even_values, write_trai
     write_training_odd_values, write_training_upper_values, write_training_upper_lower, write_training_set_even_odd, \
     write_training_set_digit_letter
 
-extractor = Services.feature_generation(FileStructure.TESTING_IMAGES_PATH.value)
+feature_extractor = Services.feature_generation(FileStructure.TESTING_IMAGES_PATH.value)
 
 
 class TrainingFeatureGeneration:
@@ -18,7 +18,7 @@ class TrainingFeatureGeneration:
         # TODO
         # Add the output label to the dataframe
         try:
-            x_test: list = extractor.extract_features(path_to_directory=extractor.path)
+            vector: list = feature_extractor.extract_features(path_to_directory=feature_extractor.path)
         except Exception as e:
             raise FeatureGeneration(additional_message=e.__str__())
 
@@ -32,13 +32,85 @@ class TrainingFeatureGeneration:
 
         # TODO
         # Add the code here, update the fetched dataframes
+        digits: list = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        letters: list = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+                         "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
+                         "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        even: list = ["0", "2", "4", "6", "8"]
+        upper: list = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
+                       "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
-        write_training_set_digit_letter(digit_letter_df)
-        write_training_set_even_odd(even_odd_df)
-        write_training_even_values(even_df)
-        write_training_odd_values(odd_df)
-        write_training_upper_lower(upper_lower_df)
-        write_training_upper_values(upper_df)
-        write_training_lower_values(lower_df)
+        vector.insert(0, 0)
 
-        return x_test
+        if output_label in digits:
+            vector.insert(1, "Digit")
+            digit_letter_df.loc[len(digit_letter_df)] = vector
+            write_training_set_digit_letter(digit_letter_df)
+
+            if output_label in even:
+                vector.pop(1)
+                vector.insert(1, "Even")
+                even_odd_df.loc[len(even_odd_df)] = vector
+                write_training_set_even_odd(even_odd_df)
+                vector.pop(1)
+                vector.insert(1, output_label)
+                even_df.loc[len(even_df)] = vector
+                write_training_even_values(even_df)
+
+            else:
+                vector.pop(1)
+                vector.insert(1, "Odd")
+                even_odd_df.loc[len(even_odd_df)] = vector
+                write_training_set_even_odd(even_odd_df)
+                vector.pop(1)
+                vector.insert(1, output_label)
+                odd_df.loc[len(odd_df)] = vector
+                write_training_odd_values(odd_df)
+        else:
+            vector.insert(1, "Letter")
+            digit_letter_df.loc[len(digit_letter_df)] = vector
+            write_training_set_digit_letter(digit_letter_df)
+
+            if output_label in upper:
+                vector.pop(1)
+                vector.insert(1, "Upper")
+                upper_lower_df.loc[len(upper_lower_df)] = vector
+                write_training_upper_lower(upper_lower_df)
+                vector.pop(1)
+                vector.insert(1, output_label)
+                upper_df.loc[len(upper_df)] = vector
+                write_training_upper_values(upper_df)
+            else:
+                vector.pop(1)
+                vector.insert(1, "Lower")
+                upper_lower_df.loc[len(upper_lower_df)] = vector
+                write_training_upper_lower(upper_lower_df)
+                vector.pop(1)
+                vector.insert(1, output_label)
+                lower_df.loc[len(lower_df)] = vector
+                write_training_lower_values(lower_df)
+
+        vector.pop(0)
+
+        # print("Digit_Letter_df: ")
+        # print(digit_letter_df)
+        #
+        # print("Odd_Even_df: ")
+        # print(even_odd_df)
+        #
+        # print("Odd_df: ")
+        # print(odd_df)
+        #
+        # print("Even_df: ")
+        # print(even_df)
+        #
+        # print("Upper_Lower_df: ")
+        # print(upper_lower_df)
+        #
+        # print("Upper_df: ")
+        # print(upper_df)
+        #
+        # print("Lower_df: ")
+        # print(lower_df)
+
+        return vector

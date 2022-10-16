@@ -4,9 +4,11 @@ from application.feature_extraction.Training_feature_generation import TrainingF
 from domain.exceptions.feature_extraction_exception import FeatureExtraction
 from domain.exceptions.feature_generation_exception import FeatureGeneration
 from persistence.repositories.api_response import ApiResponse
+from containers import Services
+from domain.models.file_structure import FileStructure
 
 router = APIRouter()
-
+letter_fine_tuner = Services.letter_fine_tuner()
 
 @router.post('/re-train')
 async def predictions(image: UploadFile = File(...), output_label: str = ""):
