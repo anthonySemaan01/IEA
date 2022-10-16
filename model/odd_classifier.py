@@ -9,10 +9,8 @@ from domain.models.file_structure import FileStructure
 
 class OddClassifier:
     @staticmethod
-    def classify_odd_digit(x_test):
-        knn = KNeighborsClassifier(n_neighbors=3)
-        # clf = svm.SVC(kernel='linear')
-        # dt = DecisionTreeClassifier()
+    def classify_odd_digit(x_test) -> str:
+        knn = KNeighborsClassifier(n_neighbors=7)
 
         x_test_np = np.array(x_test)
 
@@ -23,11 +21,8 @@ class OddClassifier:
         x_train = x_train.to_numpy()
 
         knn.fit(x_train, y_train)
-        # clf.fit(x_train, y_train)
-        # dt.fit(x_train, y_train)
-        # print("done3")
+
         y_predict_knn = knn.predict(x_test_np)
-        # y_predict_svm = clf.predict(x_test_np)
-        # y_predict_dt = dt.predict(x_test_np)
 
         return str(y_predict_knn)
+

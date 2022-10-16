@@ -15,16 +15,17 @@ class FileStructure(Enum):
     TESTING_IMAGES_PATH = "\\".join(
         [os.path.abspath(os.curdir), "datasets", "testing"])
     VECTOR_DIGIT_LETTER_PATH = "\\".join(
-        [os.path.abspath(os.curdir), "datasets", "training", "vector", "digit_letter.csv"])
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_digit_letter.csv"])
     VECTOR_EVEN_ODD__PATH = "\\".join(
-        [os.path.abspath(os.curdir), "datasets", "training", "vector", "even_odd.csv"])
-    VECTOR_CONSONANT_VOWELS_PATH = "\\".join(
-        [os.path.abspath(os.curdir), "datasets", "training", "vector", "consonant_vowel.csv"])
-    VECTOR_ODD_PATH = "\\".join(
-        [os.path.abspath(os.curdir), "datasets", "training", "vector", "odd.csv"])
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_even_odd.csv"])
     VECTOR_EVEN_PATH = "\\".join(
-        [os.path.abspath(os.curdir), "datasets", "training", "vector", "even.csv"])
-    VECTOR_VOWELS_PATH = "\\".join(
-        [os.path.abspath(os.curdir), "datasets", "training", "vector", "vowels.csv"])
-    VECTOR_CONSONNANT_PATH = "\\".join(
-        [os.path.abspath(os.curdir), "datasets", "training", "vector", "consonnant.csv"])
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_even_values.csv"])
+    VECTOR_ODD_PATH = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_odd_values.csv"])
+    VECTOR_UPPER_LOWER_PATH = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_upper_lower.csv"])
+    VECTOR_UPPER_PATH = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_upper_values.csv"])
+    VECTOR_LOWER_PATH = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_lower_values.csv"])
+

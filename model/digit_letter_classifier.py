@@ -10,8 +10,8 @@ from domain.models.file_structure import FileStructure
 class DigitLetterClassifier:
     @staticmethod
     def classify_digit_letter_knn(x_test) -> str:
-        knn = KNeighborsClassifier(n_neighbors=3)
-        clf = svm.SVC(kernel='linear')
+        knn = KNeighborsClassifier(n_neighbors=5)
+        # clf = svm.SVC(kernel='linear')
         dt = DecisionTreeClassifier()
 
         x_test_np = np.array(x_test)
@@ -25,13 +25,10 @@ class DigitLetterClassifier:
         knn.fit(x_train, y_train)
         # clf.fit(x_train, y_train)
         dt.fit(x_train, y_train)
-        print("done3")
         y_predict_knn = knn.predict(x_test_np)
         # y_predict_svm = clf.predict(x_test_np)
         y_predict_dt = dt.predict(x_test_np)
 
-        # print(y_predict_dt, y_predict_knn, y_predict_svm)
-        print(y_predict_dt, y_predict_knn)
         outputs: list = [y_predict_knn, y_predict_dt]
 
         if outputs.count("Digit") > outputs.count("Letter"):

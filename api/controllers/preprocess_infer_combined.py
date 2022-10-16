@@ -3,7 +3,7 @@ import io
 from fastapi import APIRouter, UploadFile, File, Response
 
 from application.Inference.inference import Inference
-from application.feature_extraction.feature_generation_testing import feature_generation_test
+from application.feature_extraction.Training_feature_generation import feature_generation_test
 from domain.exceptions.image_preprocessing_exception import ImagePreprocessingException
 from model.ensemble import Ensemble
 from persistence.repositories.api_response import ApiResponse

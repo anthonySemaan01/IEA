@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from sklearn import svm
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 
@@ -11,8 +10,6 @@ class EvenClassifier:
     @staticmethod
     def classify_even_digit(x_test):
         knn = KNeighborsClassifier(n_neighbors=3)
-        # clf = svm.SVC(kernel='linear')
-        # dt = DecisionTreeClassifier()
 
         x_test_np = np.array(x_test)
 
@@ -23,11 +20,7 @@ class EvenClassifier:
         x_train = x_train.to_numpy()
 
         knn.fit(x_train, y_train)
-        # clf.fit(x_train, y_train)
-        # dt.fit(x_train, y_train)
-        # print("done3")
+
         y_predict_knn = knn.predict(x_test_np)
-        # y_predict_svm = clf.predict(x_test_np)
-        # y_predict_dt = dt.predict(x_test_np)
 
         return str(y_predict_knn)
