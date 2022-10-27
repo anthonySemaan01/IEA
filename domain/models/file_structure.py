@@ -29,3 +29,40 @@ class FileStructure(Enum):
     VECTOR_LOWER_PATH = "\\".join(
         [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_lower_values.csv"])
 
+    SAV_DT_DIGIT_LETTER = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "DT_digit_letter.sav"])
+    SAV_DT_EVEN_ODD = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "DT_even_odd.sav"])
+    SAV_DT_EVEN_VALUES = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "DT_even_values.sav"])
+    SAV_DT_LOWER_VALUES = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "DT_lower_values.sav"])
+    SAV_DT_ODD_VALUES = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "DT_odd_values.sav"])
+    SAV_DT_UPPER_LOWER = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "DT_upper_lower.sav"])
+    SAV_DT_UPPER_VALUES = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "DT_upper_values.sav"])
+
+    SAV_KNN_DIGIT_LETTER = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "KNN_digit_letter.sav"])
+    SAV_KNN_EVEN_ODD = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "KNN_even_odd.sav"])
+    SAV_KNN_EVEN_VALUES = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "KNN_even_values.sav"])
+    SAV_KNN_LOWER_VALUES = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "KNN_lower_values.sav"])
+    SAV_KNN_ODD_VALUES = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "KNN_odd_values.sav"])
+    SAV_KNN_UPPER_LOWER = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "KNN_upper_lower.sav"])
+    SAV_KNN_UPPER_VALUES = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "KNN_upper_values.sav"])
+
+    SAV_SVM_DIGIT_LETTER = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "SVM_digit_letter.sav"])
+    SAV_SVM_EVEN_ODD = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "SVM_even_odd.sav"])
+    SAV_SVM_UPPER_LOWER = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "SVM_upper_lower.sav"])
+

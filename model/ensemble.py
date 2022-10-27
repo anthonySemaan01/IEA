@@ -14,9 +14,10 @@ class Ensemble:
 
     def infer(self, x_test):
         result_digit_letter = self.digit_letter.classify_digit_letter_knn(x_test)
-        print(result_digit_letter)
+        print("it's a ", result_digit_letter)
         if result_digit_letter == "Letter":
             result_upper_lower = self.upper_lower.classify_upper_lower(x_test)
+            print("it's a ", result_upper_lower)
             if result_upper_lower == "Upper":
                 result_upper_letter = self.upper.classify_upper(x_test)
                 return result_upper_letter
@@ -25,7 +26,7 @@ class Ensemble:
                 return result_lower_letter
         else:
             result_even_odd = self.even_odd.classify_even_odd(x_test)
-
+            print("it's an ", result_even_odd)
             if result_even_odd == "Even":
                 result_even = self.even.classify_even_digit(x_test)
                 return result_even

@@ -1,3 +1,4 @@
+import pickle
 import numpy as np
 import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
@@ -10,8 +11,9 @@ class EvenOddClassifier:
     @staticmethod
     def classify_even_odd(x_test) -> str:
         knn = KNeighborsClassifier(n_neighbors=3)
-        # clf = svm.SVC(kernel='linear')
-        dt = DecisionTreeClassifier()
+        dt = pickle.load(open(str(FileStructure.SAV_DT_EVEN_ODD.value), "rb"))
+        svm = pickle.load(open(str(FileStructure.SAV_SVM_EVEN_ODD.value), "rb"))
+
         x_test_np = np.array(x_test)
 
         x_test_np = x_test_np.reshape(1, -1)
@@ -21,15 +23,15 @@ class EvenOddClassifier:
         x_train = x_train.to_numpy()
 
         knn.fit(x_train, y_train)
-        # clf.fit(x_train, y_train)
-        dt.fit(x_train, y_train)
+
         y_predict_knn = knn.predict(x_test_np)
-        # y_predict_svm = clf.predict(x_test_np)
         y_predict_dt = dt.predict(x_test_np)
+        y_predict_svm = svm.predict(x_test_np)
 
-        outputs: list = [y_predict_knn, y_predict_dt]
+        outputs: list = [y_predict_knn, y_predict_dt, y_predict_svm]
+        print(outputs)
 
-        if outputs.count("even") > outputs.count("odd"):
-            return "even"
+        if outputs.count("Even") > outputs.count("Odd"):
+            return "Even"
         else:
-            return "odd"
+            return "Odd"
