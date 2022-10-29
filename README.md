@@ -72,6 +72,6 @@ The preprocessing of the image is done in the background.
 
 - [Anthony Semaan](https://github.com/anthonySemaan01), Lebanese American University, Byblos, Lebanon
 - [Michael Al Assaad](https://github.com/michaelalassaad), Lebanese American University, Byblos, Lebanon
-- [Charbel Chediac](https://github.com/charbelc15), Lebanese American University, Byblos, Lebanon
+- [Charbel el Chidiac](https://github.com/charbelc15), Lebanese American University, Byblos, Lebanon
 
 
