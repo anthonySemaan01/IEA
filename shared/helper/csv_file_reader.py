@@ -50,3 +50,73 @@ def read_training_lower_values() -> pd.DataFrame:
     csv_file = pd.read_csv(path, index_col=0)
     dataframe = pd.DataFrame(csv_file)
     return dataframe
+
+
+def read_training_lower_classes() -> pd.DataFrame:
+    path: str = str(FileStructure.VECTOR_LOWER_CLASSES_PATH.value)
+    csv_file = pd.read_csv(path, index_col=0)
+    dataframe = pd.DataFrame(csv_file)
+    return dataframe
+
+
+def read_training_lower_class_one() -> pd.DataFrame:
+    path: str = str(FileStructure.VECTOR_LOWER_CLASS_ONE.value)
+    csv_file = pd.read_csv(path, index_col=0)
+    dataframe = pd.DataFrame(csv_file)
+    return dataframe
+
+
+def read_training_lower_class_two() -> pd.DataFrame:
+    path: str = str(FileStructure.VECTOR_LOWER_CLASS_TWO.value)
+    csv_file = pd.read_csv(path, index_col=0)
+    dataframe = pd.DataFrame(csv_file)
+    return dataframe
+
+
+def read_training_lower_class_three() -> pd.DataFrame:
+    path: str = str(FileStructure.VECTOR_LOWER_CLASS_THREE.value)
+    csv_file = pd.read_csv(path, index_col=0)
+    dataframe = pd.DataFrame(csv_file)
+    return dataframe
+
+
+def read_training_lower_class_four() -> pd.DataFrame:
+    path: str = str(FileStructure.VECTOR_LOWER_CLASS_FOUR.value)
+    csv_file = pd.read_csv(path, index_col=0)
+    dataframe = pd.DataFrame(csv_file)
+    return dataframe
+
+
+def read_training_upper_classes() -> pd.DataFrame:
+    path: str = str(FileStructure.VECTOR_UPPER_CLASSES_PATH.value)
+    csv_file = pd.read_csv(path, index_col=0)
+    dataframe = pd.DataFrame(csv_file)
+    return dataframe
+
+
+def read_training_upper_class_one() -> pd.DataFrame:
+    path: str = str(FileStructure.VECTOR_UPPER_CLASS_ONE.value)
+    csv_file = pd.read_csv(path, index_col=0)
+    dataframe = pd.DataFrame(csv_file)
+    return dataframe
+
+
+def read_training_upper_class_two() -> pd.DataFrame:
+    path: str = str(FileStructure.VECTOR_UPPER_CLASS_TWO.value)
+    csv_file = pd.read_csv(path, index_col=0)
+    dataframe = pd.DataFrame(csv_file)
+    return dataframe
+
+
+def read_training_upper_class_three() -> pd.DataFrame:
+    path: str = str(FileStructure.VECTOR_UPPER_CLASS_THREE.value)
+    csv_file = pd.read_csv(path, index_col=0)
+    dataframe = pd.DataFrame(csv_file)
+    return dataframe
+
+
+def read_training_upper_class_four() -> pd.DataFrame:
+    path: str = str(FileStructure.VECTOR_UPPER_CLASS_FOUR.value)
+    csv_file = pd.read_csv(path, index_col=0)
+    dataframe = pd.DataFrame(csv_file)
+    return dataframe

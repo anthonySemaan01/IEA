@@ -31,7 +31,9 @@ class EvenOddClassifier:
         outputs: list = [y_predict_knn, y_predict_dt, y_predict_svm]
         print(outputs)
 
-        if outputs.count("Even") > outputs.count("Odd"):
-            return "Even"
-        else:
-            return "Odd"
+        # if outputs.count("Even") > outputs.count("Odd"):
+        #     return "Even"
+        # else:
+        #     return "Odd"
+
+        return y_predict_knn

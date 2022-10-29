@@ -10,6 +10,7 @@ from domain.models.file_structure import FileStructure
 router = APIRouter()
 letter_fine_tuner = Services.letter_fine_tuner()
 
+
 @router.post('/re-train')
 async def predictions(image: UploadFile = File(...), output_label: str = ""):
     try:

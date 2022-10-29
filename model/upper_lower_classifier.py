@@ -31,7 +31,9 @@ class UpperLowerClassifier:
         outputs: list = [y_predict_knn, y_predict_dt, y_predict_svm]
         print(outputs)
 
-        if outputs.count("Upper") > outputs.count("Lower"):
-            return "Upper"
-        else:
-            return "Lower"
+        # if outputs.count("Upper") > outputs.count("Lower"):
+        #     return "Upper"
+        # else:
+        #     return "Lower"
+
+        return y_predict_knn

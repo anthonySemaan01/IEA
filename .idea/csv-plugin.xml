@@ -31,6 +31,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\datasets\training\vector\training_set_lower_class_one_values.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\datasets\training\vector\training_set_lower_class_two_values.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\datasets\training\vector\training_set_lower_values.csv">
           <value>
             <Attribute>
@@ -39,6 +53,34 @@
           </value>
         </entry>
         <entry key="\datasets\training\vector\training_set_odd_values.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\datasets\training\vector\training_set_upper_class_four_values.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\datasets\training\vector\training_set_upper_class_one_values.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\datasets\training\vector\training_set_upper_class_two_values.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\datasets\training\vector\training_set_upper_classes.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -59,6 +101,7 @@
             </Attribute>
           </value>
         </entry>
+        <entry />
       </map>
     </option>
   </component>

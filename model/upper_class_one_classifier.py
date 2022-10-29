@@ -5,15 +5,15 @@ from sklearn.neighbors import KNeighborsClassifier
 from domain.models.file_structure import FileStructure
 
 
-class LowerClassifier:
+class UpperClassOneClassifier:
     @staticmethod
-    def classify_lower(x_test) -> str:
+    def classify_upper_class_one(x_test) -> str:
         knn = KNeighborsClassifier(n_neighbors=3)
 
         x_test_np = np.array(x_test)
 
         x_test_np = x_test_np.reshape(1, -1)
-        df = pd.read_csv(str(FileStructure.VECTOR_LOWER_PATH.value), index_col=0)
+        df = pd.read_csv(str(FileStructure.VECTOR_UPPER_CLASS_ONE.value), index_col=0)
         y_train = df.iloc[:, 0].to_numpy()
         x_train = df.drop(df.columns[0], axis=1)
         x_train = x_train.to_numpy()

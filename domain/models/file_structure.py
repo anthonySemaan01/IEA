@@ -26,8 +26,31 @@ class FileStructure(Enum):
         [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_upper_lower.csv"])
     VECTOR_UPPER_PATH = "\\".join(
         [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_upper_values.csv"])
+
     VECTOR_LOWER_PATH = "\\".join(
         [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_lower_values.csv"])
+
+    VECTOR_LOWER_CLASSES_PATH = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_lower_classes.csv"])
+    VECTOR_LOWER_CLASS_ONE = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_lower_class_one_values.csv"])
+    VECTOR_LOWER_CLASS_TWO = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_lower_class_two_values.csv"])
+    VECTOR_LOWER_CLASS_THREE = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_lower_class_three_values.csv"])
+    VECTOR_LOWER_CLASS_FOUR = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_lower_class_four_values.csv"])
+
+    VECTOR_UPPER_CLASSES_PATH = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_upper_classes.csv"])
+    VECTOR_UPPER_CLASS_ONE = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_upper_class_one_values.csv"])
+    VECTOR_UPPER_CLASS_TWO = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_upper_class_two_values.csv"])
+    VECTOR_UPPER_CLASS_THREE = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_upper_class_three_values.csv"])
+    VECTOR_UPPER_CLASS_FOUR = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_upper_class_four_values.csv"])
 
     SAV_DT_DIGIT_LETTER = "\\".join(
         [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "DT_digit_letter.sav"])

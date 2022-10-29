@@ -36,3 +36,53 @@ def write_training_upper_values(dataframe: pd.DataFrame):
 def write_training_lower_values(dataframe: pd.DataFrame):
     path: str = str(FileStructure.VECTOR_LOWER_PATH.value)
     dataframe.to_csv(path)
+
+
+def write_training_lower_classes(dataframe: pd.DataFrame):
+    path: str = str(FileStructure.VECTOR_LOWER_CLASSES_PATH.value)
+    dataframe.to_csv(path)
+
+
+def write_training_lower_class_one(dataframe: pd.DataFrame):
+    path: str = str(FileStructure.VECTOR_LOWER_CLASS_ONE.value)
+    dataframe.to_csv(path)
+
+
+def write_training_lower_class_two(dataframe: pd.DataFrame):
+    path: str = str(FileStructure.VECTOR_LOWER_CLASS_TWO.value)
+    dataframe.to_csv(path)
+
+
+def write_training_lower_class_three(dataframe: pd.DataFrame):
+    path: str = str(FileStructure.VECTOR_LOWER_CLASS_THREE.value)
+    dataframe.to_csv(path)
+
+
+def write_training_lower_class_four(dataframe: pd.DataFrame):
+    path: str = str(FileStructure.VECTOR_LOWER_CLASS_FOUR.value)
+    dataframe.to_csv(path)
+
+
+def write_training_upper_classes(dataframe: pd.DataFrame):
+    path: str = str(FileStructure.VECTOR_UPPER_CLASSES_PATH.value)
+    dataframe.to_csv(path)
+
+
+def write_training_upper_class_one(dataframe: pd.DataFrame):
+    path: str = str(FileStructure.VECTOR_UPPER_CLASS_ONE.value)
+    dataframe.to_csv(path)
+
+
+def write_training_upper_class_two(dataframe: pd.DataFrame):
+    path: str = str(FileStructure.VECTOR_UPPER_CLASS_TWO.value)
+    dataframe.to_csv(path)
+
+
+def write_training_upper_class_three(dataframe: pd.DataFrame):
+    path: str = str(FileStructure.VECTOR_UPPER_CLASS_THREE.value)
+    dataframe.to_csv(path)
+
+
+def write_training_upper_class_four(dataframe: pd.DataFrame):
+    path: str = str(FileStructure.VECTOR_UPPER_CLASS_FOUR.value)
+    dataframe.to_csv(path)
