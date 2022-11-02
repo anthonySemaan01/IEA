@@ -27,23 +27,32 @@ class TrainingFeatureGeneration:
         except Exception as e:
             raise FeatureGeneration(additional_message=e.__str__())
 
-        digit_letter_df = read_training_set_digit_letter()
-        even_odd_df = read_training_set_even_odd()
-        even_df = read_training_even_values()
-        odd_df = read_training_odd_values()
-        upper_lower_df = read_training_upper_lower()
+        try:
+            digit_letter_df = read_training_set_digit_letter()
+            even_odd_df = read_training_set_even_odd()
+            even_df = read_training_even_values()
+            odd_df = read_training_odd_values()
+            upper_lower_df = read_training_upper_lower()
 
-        lower_classes_df = read_training_lower_classes()
-        lower_class_one_df = read_training_lower_class_one()
-        lower_class_two_df = read_training_lower_class_two()
-        lower_class_three_df = read_training_lower_class_three()
-        lower_class_four_df = read_training_lower_class_four()
+            print("here 1")
+            lower_classes_df = read_training_lower_classes()
+            print("hello 2,1")
+            lower_class_one_df = read_training_lower_class_one()
+            print("hello 2.2")
+            lower_class_two_df = read_training_lower_class_two()
+            print("hello 2.3")
+            lower_class_three_df = read_training_lower_class_three()
+            print("hello 2.4")
+            lower_class_four_df = read_training_lower_class_four()
 
-        upper_classes_df = read_training_upper_classes()
-        upper_class_one_df = read_training_upper_class_one()
-        upper_class_two_df = read_training_upper_class_two()
-        upper_class_three_df = read_training_upper_class_three()
-        upper_class_four_df = read_training_upper_class_four()
+            print("here 2")
+            upper_classes_df = read_training_upper_classes()
+            upper_class_one_df = read_training_upper_class_one()
+            upper_class_two_df = read_training_upper_class_two()
+            upper_class_three_df = read_training_upper_class_three()
+            upper_class_four_df = read_training_upper_class_four()
+        except Exception as e:
+            print("error while reading files, ", e.__str__())
 
         # TODO
         # Add the code here, update the fetched dataframes

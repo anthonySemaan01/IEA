@@ -14,6 +14,8 @@ class FileStructure(Enum):
         [os.path.abspath(os.curdir), "datasets", "training", "images-ubyte", "emnist-letters-train-images-idx3-ubyte"])
     TESTING_IMAGES_PATH = "\\".join(
         [os.path.abspath(os.curdir), "datasets", "testing"])
+    BBOX_IMAGE_TESTING = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "bbox_image_testing"])
     VECTOR_DIGIT_LETTER_PATH = "\\".join(
         [os.path.abspath(os.curdir), "datasets", "training", "vector", "training_set_digit_letter.csv"])
     VECTOR_EVEN_ODD__PATH = "\\".join(
@@ -88,4 +90,55 @@ class FileStructure(Enum):
         [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "SVM_even_odd.sav"])
     SAV_SVM_UPPER_LOWER = "\\".join(
         [os.path.abspath(os.curdir), "datasets", "training", "sav_files", "SVM_upper_lower.sav"])
+
+    VECTOR_CLASSES = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "classes.csv"])
+
+    VECTOR_CLASSE1_MODELS = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class1_models.csv"])
+    VECTOR_CLASSE1_MODEL1 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class1_model1.csv"])
+    VECTOR_CLASSE1_MODEL2 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class1_model2.csv"])
+    VECTOR_CLASSE1_MODEL3 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class1_model3.csv"])
+
+    VECTOR_CLASSE2_MODELS = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class2_models.csv"])
+    VECTOR_CLASSE2_MODEL1 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class2_model1.csv"])
+    VECTOR_CLASSE2_MODEL2 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class2_model2.csv"])
+    VECTOR_CLASSE2_MODEL11 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class2_model11.csv"])
+    VECTOR_CLASSE2_MODEL12 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class2_model12.csv"])
+
+    VECTOR_CLASSE3_MODELS = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class3_models.csv"])
+    VECTOR_CLASSE3_MODEL1 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class3_model1.csv"])
+    VECTOR_CLASSE3_MODEL2 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class3_model2.csv"])
+
+    VECTOR_CLASSE4_MODEL1 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class4_model1.csv"])
+
+    VECTOR_CLASSE5_MODELS = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class5_models.csv"])
+    VECTOR_CLASSE5_MODEL1 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class5_model1.csv"])
+    VECTOR_CLASSE5_MODEL2 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class5_model2.csv"])
+    VECTOR_CLASSE5_MODEL11 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class5_model11.csv"])
+    VECTOR_CLASSE5_MODEL12 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class5_model12.csv"])
+
+    VECTOR_CLASSE6_MODELS = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class6_models.csv"])
+    VECTOR_CLASSE6_MODEL1 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class6_model1.csv"])
+    VECTOR_CLASSE6_MODEL2 = "\\".join(
+        [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class6_model2.csv"])
 
