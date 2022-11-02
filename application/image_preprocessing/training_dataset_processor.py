@@ -67,7 +67,6 @@ def letter_finder(path: str):
                                       width=coordinates[1]["x"], height=coordinates[1]["y"])
         dilated_arr = erosion_dilation(image_arr=cropped_image)
         resized_image = image_resizer(image_arr=dilated_arr)
-
         image_out = im.fromarray(resized_image)
         output_path = "\\".join([FileStructure.TRAINING_IMAGES_PATH.value, image])
         image_out.save(output_path)

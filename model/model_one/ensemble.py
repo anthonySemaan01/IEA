@@ -1,5 +1,7 @@
-from model import upper_classifier, upper_lower_classifier, digit_letter_classifier, even_classifier, \
-    even_odd_classifier, odd_classifier, lower_classifier, lower_classes_classifier, lower_class_one_classifier, lower_class_two_classifier, lower_class_three_classifier, lower_class_four_classifier, upper_classes_classifier, upper_class_one_classifier, upper_class_two_classifier, upper_class_three_classifier, upper_class_four_classifier
+from model.model_one import upper_class_two_classifier, odd_classifier, lower_classes_classifier, \
+    upper_class_four_classifier, upper_class_three_classifier, digit_letter_classifier, lower_class_three_classifier, \
+    lower_class_one_classifier, upper_class_one_classifier, lower_class_four_classifier, upper_lower_classifier, \
+    even_classifier, upper_classifier, lower_class_two_classifier, even_odd_classifier, upper_classes_classifier
 
 
 class Ensemble:

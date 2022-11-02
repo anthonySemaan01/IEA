@@ -20,6 +20,9 @@ Download and extract these 2 zip folders. CSV files in ensemble1 put them in dat
 ```bash
 pip install -r requirements.txt
 ```
+
+## File Structure
+This API follows a Domain Driven Structure with some changes:
 ```bash
 .
 ├── api
@@ -43,10 +46,10 @@ pip install -r requirements.txt
 │   └── models
 ├── model
 ├── persistence
-    └── repositories
+│   └── repositories
 ├── shared
 │   ├── data_handler
-    └── helper
+│   └── helper
 ├── containers.py
 ├── main.py
 └── README.md

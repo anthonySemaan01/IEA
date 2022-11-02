@@ -68,14 +68,14 @@ def read_training_lower_class_one() -> pd.DataFrame:
 
 def read_training_lower_class_two() -> pd.DataFrame:
     path: str = str(FileStructure.VECTOR_LOWER_CLASS_TWO.value)
-    csv_file = pd.read_csv(path, index_col=0)
+    csv_file = pd.read_csv(path, index_col=0, error_bad_lines=False)
     dataframe = pd.DataFrame(csv_file)
     return dataframe
 
 
 def read_training_lower_class_three() -> pd.DataFrame:
     path: str = str(FileStructure.VECTOR_LOWER_CLASS_THREE.value)
-    csv_file = pd.read_csv(path, index_col=0)
+    csv_file = pd.read_csv(path, index_col=0, error_bad_lines=False)
     dataframe = pd.DataFrame(csv_file)
     return dataframe
 
