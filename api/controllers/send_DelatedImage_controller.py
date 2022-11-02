@@ -6,9 +6,9 @@ import base64
 router = APIRouter()
 
 
-@router.get('/sendImage')
-async def sendImage():
-    ImagePath = "datasets/resized_images/img8.png" # Delated image path For Anthony
+@router.get('/send_Delated_Image')
+async def send_Delated_Image():
+    ImagePath = "datasets/eroded_dilated/tester.png" # Delated image path For Anthony
     
     if(os.path.exists(ImagePath)):
         with open(ImagePath, 'rb') as f:

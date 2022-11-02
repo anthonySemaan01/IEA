@@ -8,7 +8,7 @@ router = APIRouter()
 
 @router.get('/send_Cropped_Image')
 async def send_Cropped_Image():
-    ImagePath = "datasets/resized_images/img8.png" # Cropped Image Path For Anthony
+    ImagePath = "datasets/cropped_images/tester.png" # Cropped Image Path
     
     if(os.path.exists(ImagePath)):
         with open(ImagePath, 'rb') as f:

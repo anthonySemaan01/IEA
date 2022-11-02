@@ -8,7 +8,7 @@ router = APIRouter()
 
 @router.get('/send_BB_Image')
 async def send_BB_Image():
-    ImagePath = "datasets/resized_images/img8.png" # BB image path For Anthony
+    ImagePath = "datasets/bbox_image_testing/tester.png" # BB image path
     
     if(os.path.exists(ImagePath)):
         with open(ImagePath, 'rb') as f:
