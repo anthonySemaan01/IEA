@@ -11,7 +11,7 @@ from domain.exceptions.feature_extraction_exception import FeatureExtraction
 
 # np.set_printoptions(threshold=sys.maxsize)
 
-class FeatureExtractor(AbstractFeatureExtractor):
+class FeatureExtractor2(AbstractFeatureExtractor):
     threshold = 127  # Below is black, above is white since values are already Grayscale
 
     def __init__(self, path):
@@ -1209,6 +1209,10 @@ class FeatureExtractor(AbstractFeatureExtractor):
                 output_vector = vector
 
             except Exception as e:
+                print("an error occured here")
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                print(exc_type, fname, exc_tb.tb_lineno)
                 raise FeatureExtraction(additional_message=e.__str__())
 
         return output_vector

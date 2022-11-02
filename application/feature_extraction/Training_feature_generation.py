@@ -14,7 +14,7 @@ from shared.helper.csv_file_writer import write_training_even_values, write_trai
     write_training_lower_classes, write_training_upper_classes, write_training_upper_class_one, \
     write_training_upper_class_two, write_training_upper_class_three, write_training_upper_class_four
 
-feature_extractor = Services.feature_generation(FileStructure.TESTING_IMAGES_PATH.value)
+feature_extractor1 = Services.feature_generation1(FileStructure.TESTING_IMAGES_PATH.value)
 
 
 class TrainingFeatureGeneration:
@@ -22,7 +22,7 @@ class TrainingFeatureGeneration:
     @staticmethod
     def feature_generation_test(output_label: str):
         try:
-            vector: list = feature_extractor.extract_features(path_to_directory=feature_extractor.path)
+            vector: list = feature_extractor1.extract_features(path_to_directory=feature_extractor1.path)
 
         except Exception as e:
             raise FeatureGeneration(additional_message=e.__str__())

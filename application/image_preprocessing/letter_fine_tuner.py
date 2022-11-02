@@ -50,8 +50,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
         try:
             gray_scale = cv2.cvtColor(image_arr, cv2.COLOR_BGR2GRAY)
             (thresh, im_bw) = cv2.threshold(gray_scale, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-            gray_scale_path = str(FileStructure.GRAY_SCALE_IMAGES_PATH.value) + "\\img{}.png".format(
-                len(os.listdir(str(FileStructure.GRAY_SCALE_IMAGES_PATH.value))))
+            gray_scale_path = str(FileStructure.GRAY_SCALE_IMAGES_PATH.value) + "\\tester.png"
             # image.save(gray_scale_path)
             cv2.imwrite(gray_scale_path, im_bw)
         except Exception as e:
@@ -67,8 +66,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
     def image_cropper(self, image_arr: np.ndarray, x: int, y: int, width: int, height: int) -> tuple[np.ndarray, str]:
         try:
             cropped_image = image_arr[x:width, y:height]
-            cropped_image_path = str(FileStructure.CROPPED_IMAGES_PATH.value) + "\\img{}.png".format(
-                len(os.listdir(str(FileStructure.CROPPED_IMAGES_PATH.value))))
+            cropped_image_path = str(FileStructure.CROPPED_IMAGES_PATH.value) + "\\tester.png"
             cv2.imwrite(cropped_image_path, cropped_image)
         except Exception as e:
             print(e.__str__())
@@ -78,8 +76,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
     def image_resizer(self, image_arr: np.ndarray) -> tuple[np.ndarray, str]:
         try:
             resized_image = cv2.resize(image_arr, (32, 32), cv2.INTER_AREA)
-            resized_image_path = str(FileStructure.RESIZED_IMAGES_PATH.value) + "\\img{}.png".format(
-                len(os.listdir(str(FileStructure.RESIZED_IMAGES_PATH.value))))
+            resized_image_path = str(FileStructure.RESIZED_IMAGES_PATH.value) + "\\tester.png"
             cv2.imwrite(resized_image_path, resized_image)
         except Exception as e:
             print(e.__str__())
@@ -91,8 +88,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
         try:
             eroded = cv2.erode(image_arr, kernel, iterations=1)
             dilated = cv2.dilate(eroded, kernel, iterations=1)
-            eroded_dilated_path = str(FileStructure.ERODED_DILATED_PATH.value) + "\\img{}.png".format(
-                len(os.listdir(str(FileStructure.ERODED_DILATED_PATH.value))))
+            eroded_dilated_path = str(FileStructure.ERODED_DILATED_PATH.value) + "\\tester.png"
             cv2.imwrite(eroded_dilated_path, dilated)
         except Exception as e:
             print(e)
