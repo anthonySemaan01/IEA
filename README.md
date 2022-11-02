@@ -13,8 +13,12 @@ Character Classifier is an ensemble learning model used to classify Characters a
 Clone the repo and install all the requirements to get the dependencies needed.
 We advise to create a virtual environment with python 3.9 as interpreter.
 
+[csv_ensemble1.zip](https://github.com/anthonySemaan01/IEA/files/9920005/csv_ensemble1.zip)
+
+[csv_ensemble2.zip](https://github.com/anthonySemaan01/IEA/files/9919993/csv_ensemble2.zip)
+
 Download and extract these 2 zip folders. CSV files in ensemble1 put them in datasets/training/vector. CSV files in ensemble2 put them in datasets/training/vector2
-[csv_ensemble2.zip](https://github.com/anthonySemaan01/IEA/files/9919993/csv_ensemble2.zip)[csv_ensemble1.zip](https://github.com/anthonySemaan01/IEA/files/9920005/csv_ensemble1.zip)
+
 
 
 ```bash
@@ -40,6 +44,9 @@ This API follows a Domain Driven Structure with some changes:
 │   ├── resized_images
 │   ├── testing
 │   └── training
+│     └── vectors
+│         ├── vector
+│         └── vector2
 ├── domain
 │   ├── contracts
 │   ├── exceptions
@@ -54,6 +61,8 @@ This API follows a Domain Driven Structure with some changes:
 ├── main.py
 └── README.md
 ```
+
+
 ## Usage
 
 In the root directory of the project, type the following command in the terminal

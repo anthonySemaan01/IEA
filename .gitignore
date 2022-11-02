@@ -1,3 +1,2 @@
-/datasets/training/images-ubyte/emnist-letters-train-images-idx3-ubyte
-/datasets/training/images/content
-datasets/training/labels-ubyte/emnist-letters-train-labels-idx1-ubyte
+/datasets/*
+
