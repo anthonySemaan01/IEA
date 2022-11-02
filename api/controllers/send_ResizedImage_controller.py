@@ -6,9 +6,9 @@ import base64
 router = APIRouter()
 
 
-@router.get('/sendImage')
-async def sendImage():
-    ImagePath = "datasets/resized_images/img8.png" # For Anthony
+@router.get('/send_Resized_Image')
+async def send_Resized_Image():
+    ImagePath = "datasets/resized_images/img8.png" # Resized image path For Anthony
     
     if(os.path.exists(ImagePath)):
         with open(ImagePath, 'rb') as f:

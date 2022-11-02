@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
 from api.controllers import health_check_controller, image_preprocessing_controller, training_controller, \
-    preprocess_infer_combined, translate_controller, sendImage_controller
+    preprocess_infer_combined, translate_controller, send_BBImage_controller, send_CroppedImage_controller, send_DelatedImage_controller, send_ResizedImage_controller
 
 app = FastAPI(version='1.0', title='IEA backend API',
               description="Provide different image preprocessing and images-ubyte extraction")
@@ -45,7 +45,25 @@ app.include_router(
 )
 
 app.include_router(
-    router=sendImage_controller.router,
+    router=send_BBImage_controller.router,
     prefix="",
     tags=["Bounding Box"]
+)
+
+app.include_router(
+    router=send_CroppedImage_controller.router,
+    prefix="",
+    tags=["Cropped Image"]
+)
+
+app.include_router(
+    router=send_DelatedImage_controller.router,
+    prefix="",
+    tags=["Delated Image"]
+)
+
+app.include_router(
+    router=send_ResizedImage_controller.router,
+    prefix="",
+    tags=["Resized Image"]
 )
