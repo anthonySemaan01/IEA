@@ -44,9 +44,8 @@ This API follows a Domain Driven Structure with some changes:
 │   ├── resized_images
 │   ├── testing
 │   └── training
-│     └── vectors
-│         ├── vector
-│         └── vector2
+│       ├── vector
+│       └── vector2      
 ├── domain
 │   ├── contracts
 │   ├── exceptions

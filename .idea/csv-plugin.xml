@@ -24,6 +24,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\datasets\training\vector2\class1_model3.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\datasets\training\vector2\class1_models.csv">
           <value>
             <Attribute>
@@ -38,6 +45,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\datasets\training\vector2\class2_model11.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\datasets\training\vector2\class2_model12.csv">
           <value>
             <Attribute>
@@ -45,7 +59,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\datasets\training\vector2\class2_model2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\datasets\training\vector2\class2_models.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\datasets\training\vector2\class3_model1.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -80,6 +108,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\datasets\training\vector2\class5_model11.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\datasets\training\vector2\class5_model12.csv">
           <value>
             <Attribute>
@@ -101,6 +136,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\datasets\training\vector2\class6_model1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\datasets\training\vector2\class6_model2.csv">
           <value>
             <Attribute>
@@ -116,6 +158,20 @@
           </value>
         </entry>
         <entry key="\datasets\training\vector\training_set_digit_letter.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\datasets\training\vector\training_set_even_odd.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\datasets\training\vector\training_set_even_values.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -157,6 +213,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\datasets\training\vector\training_set_odd_values.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\datasets\training\vector\training_set_upper_class_four_values.csv">
           <value>
             <Attribute>
@@ -171,6 +234,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\datasets\training\vector\training_set_upper_class_three_values.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\datasets\training\vector\training_set_upper_class_two_values.csv">
           <value>
             <Attribute>
@@ -179,6 +249,13 @@
           </value>
         </entry>
         <entry key="\datasets\training\vector\training_set_upper_classes.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\datasets\training\vector\training_set_upper_lower.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

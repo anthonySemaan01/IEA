@@ -120,3 +120,9 @@ def read_training_upper_class_four() -> pd.DataFrame:
     csv_file = pd.read_csv(path, index_col=0)
     dataframe = pd.DataFrame(csv_file)
     return dataframe
+
+
+def read_csv_file(path_to_csv_file: str) -> pd.DataFrame:
+    csv_file = pd.read_csv(path_to_csv_file, index_col=0)
+    dataframe = pd.DataFrame(csv_file)
+    return dataframe

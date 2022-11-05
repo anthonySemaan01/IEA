@@ -86,3 +86,6 @@ def write_training_upper_class_three(dataframe: pd.DataFrame):
 def write_training_upper_class_four(dataframe: pd.DataFrame):
     path: str = str(FileStructure.VECTOR_UPPER_CLASS_FOUR.value)
     dataframe.to_csv(path)
+
+def write_to_csv_file(path_to_csv_file: str, dataframe: pd.DataFrame):
+    dataframe.to_csv(path_to_csv_file)
