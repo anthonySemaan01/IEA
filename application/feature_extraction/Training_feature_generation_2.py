@@ -228,7 +228,7 @@ class TrainingFeatureGeneration2:
                     write_to_csv_file(path_to_csv_file=str(FileStructure.VECTOR_CLASSE5_MODEL12.value),
                                       dataframe=class5_model12_df)
 
-            if output_label in m2c2:
+            if output_label in m2c5:
                 vector.insert(0, "class5_model2")
                 class5_models_df = read_csv_file(str(FileStructure.VECTOR_CLASSE5_MODELS.value))
                 class5_models_df.loc[len(class5_models_df)] = vector
@@ -248,7 +248,7 @@ class TrainingFeatureGeneration2:
             write_to_csv_file(path_to_csv_file=str(FileStructure.VECTOR_CLASSES.value), dataframe=classes_df)
             vector.pop(0)
 
-            if output_label in m1c3:
+            if output_label in m1c6:
                 vector.insert(0, "class6_model1")
                 class6_models_df = read_csv_file(str(FileStructure.VECTOR_CLASSE6_MODELS.value))
                 class6_models_df.loc[len(class6_models_df)] = vector
