@@ -183,7 +183,7 @@ class TrainingFeatureGeneration2:
             write_to_csv_file(path_to_csv_file=str(FileStructure.VECTOR_CLASSES.value), dataframe=classes_df)
             vector.pop(0)
             vector.insert(0, output_label[0])
-            class4_model1_df = read_csv_file(str(FileStructure.VECTOR_CLASSE4_MODEL1))
+            class4_model1_df = read_csv_file(str(FileStructure.VECTOR_CLASSE4_MODEL1.value))
             class4_model1_df.loc[len(class4_model1_df)] = vector
             write_to_csv_file(path_to_csv_file=str(FileStructure.VECTOR_CLASSE4_MODEL1.value),
                               dataframe=class4_model1_df)
