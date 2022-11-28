@@ -1,0 +1,446 @@
+# this file uses the following features:
+# base features + Fourier + edges + key point descriptor
+import os
+
+import cv2
+import numpy as np
+import sys
+
+from domain.contracts.abstract_feature_extractor import AbstractFeatureExtractor
+from domain.exceptions.feature_extraction_exception import FeatureExtraction
+
+
+class FeatureExtractorAnnTwo(AbstractFeatureExtractor):
+    threshold = 127  # Below is black, above is white since values are already Grayscale
+
+    def __init__(self, path):
+        self.path = path
+
+    def get_total_black_pixels(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        number_of_black_pix = np.sum(img <= self.threshold)  # extracting only black pixels
+        return number_of_black_pix
+
+    def get_total_white_pixels(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        number_of_white_pix = np.sum(img > self.threshold)  # extracting only white pixels
+        return number_of_white_pix
+
+    # 2 Left / Right
+    def get_total_left_pixels(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        total_left = img[:, :16]
+        total_left = np.sum(total_left <= self.threshold)  # return total black pixels in that zone # white
+        # background, black writing line
+        return total_left
+
+    def get_total_right_pixels(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        total_right = img[:, 16:]
+        total_right = np.sum(total_right <= self.threshold)
+        return total_right
+
+    # 3 Up / Down
+    def get_total_up_pixels(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        total_up = img[:16, :]
+        total_up = np.sum(total_up <= self.threshold)
+        return total_up
+
+    def get_total_down_pixels(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        total_down = img[16:, :]
+        total_down = np.sum(total_down <= self.threshold)
+        return total_down
+
+    # 4 Horizontal four zones
+    def get_total_up_left_pixels_horizontal(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        col_min = 0
+        col_max = 32
+        row_min = 0
+        row_max = 8
+        black_pixels_in_vector = 0
+        while col_max > 0:
+            vector = img[col_min:col_max, row_min:row_max]
+            black_pixels_in_vector = black_pixels_in_vector + np.sum(vector <= self.threshold)
+            col_max = col_max - 8
+            row_min = row_min + 8
+            row_max = row_max + 8
+        return black_pixels_in_vector
+
+    def get_total_down_right_pixels_horizontal(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        col_min = 24
+        col_max = 32
+        row_min = 0
+        row_max = 8
+        black_pixels_in_vector = 0
+        while col_min >= 0:
+            vector = img[col_min:col_max, row_min:row_max]
+            black_pixels_in_vector = black_pixels_in_vector + np.sum(vector <= self.threshold)
+            col_min = col_min - 8
+            row_min = row_min + 8
+            row_max = row_max + 8
+        return black_pixels_in_vector
+
+    def get_total_up_right_pixels_horizontal(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        col_min = 0
+        col_max = 8
+        row_min = 0
+        row_max = 8
+        black_pixels_in_vector = 0
+        while col_max <= 32:
+            vector = img[col_min:col_max, row_min:row_max]
+            black_pixels_in_vector = black_pixels_in_vector + np.sum(vector <= self.threshold)
+            col_max = col_max + 8
+            row_min = row_min + 8
+            row_max = row_max + 8
+        return black_pixels_in_vector
+
+    def get_total_down_left_pixels_horizontal(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        col_min = 0
+        col_max = 8
+        row_min = 24
+        row_max = 32
+        black_pixels_in_vector = 0
+        while row_max > 0:
+            vector = img[col_min:col_max, row_min:row_max]
+            black_pixels_in_vector = black_pixels_in_vector + np.sum(vector <= self.threshold)
+            col_max = col_max + 8
+            row_min = row_min - 8
+            row_max = row_max - 8
+        return black_pixels_in_vector
+
+    # 5 cols traverse
+    def get_nb_of_black_pixels_col1(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        col1 = img[0:32, 0:8]
+        nb_black_pixels = np.sum(col1 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_col2(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        col1 = img[0:32, 8:16]
+        nb_black_pixels = np.sum(col1 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_col3(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        col1 = img[0:32, 16:24]
+        nb_black_pixels = np.sum(col1 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_col4(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        col1 = img[0:32, 24:32]
+        nb_black_pixels = np.sum(col1 <= self.threshold)
+        return nb_black_pixels
+
+    # 6 rows traverse
+    def get_nb_of_black_pixels_row1(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        row1 = img[0:8, 0:32]
+        nb_black_pixels = np.sum(row1 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_row2(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        row2 = img[8:16, 0:32]
+        nb_black_pixels = np.sum(row2 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_row3(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        row3 = img[16:24, 0:32]
+        nb_black_pixels = np.sum(row3 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_row4(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        row4 = img[24:32, 0:32]
+        nb_black_pixels = np.sum(row4 <= self.threshold)
+        return nb_black_pixels
+
+    # 7 Horizontal traverse
+    def get_nb_of_black_pixels_diag1(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        diag1 = np.diag(img, -1)
+        nb_black_pixels = np.sum(diag1 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_diag2(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        diag1 = np.diag(img, -2)
+        nb_black_pixels = np.sum(diag1 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_diag3(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        diag1 = np.diag(img, -3)
+        nb_black_pixels = np.sum(diag1 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_diag4(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        diag1 = np.diag(img)
+        nb_black_pixels = np.sum(diag1 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_diag5(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        diag1 = np.diag(img, 1)
+        nb_black_pixels = np.sum(diag1 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_diag6(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        diag1 = np.diag(img, 2)
+        nb_black_pixels = np.sum(diag1 <= self.threshold)
+        return nb_black_pixels
+
+    def get_nb_of_black_pixels_diag7(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        diag1 = np.diag(img, 3)
+        nb_black_pixels = np.sum(diag1 <= self.threshold)
+        return nb_black_pixels
+
+    #  8 Nb of Black pixels in each sub area
+    def get_sub_pixels1(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, :8]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels2(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, :8]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels3(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, :8]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels4(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, :8]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels5(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, 8:16]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels6(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 8:16]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels7(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 8:16]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels8(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 8:16]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels9(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[:8, 16:24]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels10(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 16:24]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels11(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 16:24]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels12(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 16:24]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels13(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[0:8, 24:32]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels14(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[8:16, 24:32]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels15(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[16:24, 24:32]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_sub_pixels16(self, path):
+        img = cv2.imread(path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        sub_area = img[24:32, 24:32]
+        sub_area = np.sum(sub_area <= self.threshold)
+        return sub_area
+
+    def get_edges(self, path) -> list:
+        arr = cv2.imread(path)
+        arr = cv2.cvtColor(arr, cv2.COLOR_BGR2GRAY)
+        edges = cv2.Canny(arr, 100, 200)
+        return edges
+
+    def compute_FFT(self, path) -> list:
+        arr = cv2.imread(path)
+        arr = cv2.cvtColor(arr, cv2.COLOR_BGR2GRAY)
+        f = np.fft.fft2(arr, [10, 10])  # THE SECOND PARAM IS FOR N*N size of returned 2D FFT vector
+        fshift = np.fft.fftshift(f)
+        magnitude_spectrum = 20 * np.log(np.abs(fshift))
+        return magnitude_spectrum
+
+    # 15 Keypoint detector (black/white blobs orientation)
+    def compute_nb_SIFT_keypoints(self, path) -> list:
+        arr = cv2.imread(path)
+        arr = cv2.cvtColor(arr, cv2.COLOR_BGR2GRAY)
+        sift = cv2.SIFT_create(400)
+        kp, des = sift.detectAndCompute(arr, None)
+        # numberOfKeyPoints = len(kp)
+        first_KP_desc = des[0]
+        first_KP_desc_arr = []
+        count = 0
+        for desc in first_KP_desc:
+            if (count == 119):
+                break
+            first_KP_desc_arr.append(int(desc))
+            count = count + 1
+        return first_KP_desc_arr
+
+    def extract_features(self, path_to_directory: str):
+        output_vector: list = []
+        vector: list = []
+
+        for image in os.listdir(path_to_directory):
+            try:
+                path = str(os.path.join(path_to_directory, image))
+                vector.append(self.get_total_black_pixels(path))
+                vector.append(self.get_total_white_pixels(path))
+
+                vector.append(self.get_total_left_pixels(path))
+                vector.append(self.get_total_right_pixels(path))
+
+                vector.append(self.get_total_up_pixels(path))
+                vector.append(self.get_total_down_pixels(path))
+
+                vector.append(self.get_total_up_left_pixels_horizontal(path))
+                vector.append(self.get_total_down_right_pixels_horizontal(path))
+                vector.append(self.get_total_up_right_pixels_horizontal(path))
+                vector.append(self.get_total_down_left_pixels_horizontal(path))
+
+                vector.append(self.get_nb_of_black_pixels_col1(path))
+                vector.append(self.get_nb_of_black_pixels_col2(path))
+                vector.append(self.get_nb_of_black_pixels_col3(path))
+                vector.append(self.get_nb_of_black_pixels_col4(path))
+
+                vector.append(self.get_nb_of_black_pixels_row1(path))
+                vector.append(self.get_nb_of_black_pixels_row2(path))
+                vector.append(self.get_nb_of_black_pixels_row3(path))
+                vector.append(self.get_nb_of_black_pixels_row4(path))
+
+                vector.append(self.get_nb_of_black_pixels_diag1(path))
+                vector.append(self.get_nb_of_black_pixels_diag2(path))
+                vector.append(self.get_nb_of_black_pixels_diag3(path))
+                vector.append(self.get_nb_of_black_pixels_diag4(path))
+                vector.append(self.get_nb_of_black_pixels_diag5(path))
+                vector.append(self.get_nb_of_black_pixels_diag6(path))
+                vector.append(self.get_nb_of_black_pixels_diag7(path))
+
+                # 4) First KP desc
+                #  to increase the weight of this feature we could append it multiple times
+                first_KP_desc = self.compute_nb_SIFT_keypoints(path)
+                for desc in first_KP_desc:
+                    vector.append(desc)
+
+                # 5) FFT magnitude vector
+                twoD_FFT_magn_vector = self.compute_FFT(path)
+                for row in twoD_FFT_magn_vector:
+                    for val in row:
+                        vector.append(int(val))
+
+                # 6) edges detection
+                twoD_edges_vector = self.get_edges(path)
+                for row in twoD_edges_vector:
+                    for val in row:
+                        vector.append(int(val))
+
+                print(len(vector))
+                output_vector = vector
+
+            except Exception as e:
+                print("an error occurred here")
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                print(exc_type, fname, exc_tb.tb_lineno)
+                raise FeatureExtraction(additional_message=e.__str__())
+
+            return output_vector
