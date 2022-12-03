@@ -1006,6 +1006,198 @@ class FeatureExtractorAnnOne(AbstractFeatureExtractor):
                 vector.append(self.get_sub_pixels15(path))
                 vector.append(self.get_sub_pixels16(path))
 
+                for x in range(0, 8):
+                    res = self.get_sub_pixels1_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels2_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels3_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels4_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels5_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels6_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels7_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels8_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels9_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels10_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels11_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels12_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels13_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels14_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels15_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels16_rows(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels1_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels2_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels3_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels4_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels5_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels6_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels7_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels8_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels9_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels10_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels11_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels12_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels13_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels14_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels15_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(0, 8):
+                    res = self.get_sub_pixels16_cols(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels1_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels2_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels3_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels4_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels5_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels6_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels7_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels8_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels9_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels10_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels11_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels12_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels13_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels14_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels15_horiz(path)[x]
+                    vector.append(res)
+
+                for x in range(-7, 8):
+                    res = self.get_sub_pixels16_horiz(path)[x]
+                    vector.append(res)
+
                 features = self.compute_directional_distribution(path)
                 for feature in features:
                     vector.append(feature)

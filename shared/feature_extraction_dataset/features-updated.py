@@ -1,22 +1,20 @@
-# This file uses the following features:
-# all features
+from typing import List
+
+import numpy as np
+import cv2
 import os
 import sys
 
-import cv2
-import numpy as np
-from typing import List
-
-from domain.contracts.abstract_feature_extractor import AbstractFeatureExtractor
-from domain.exceptions.feature_extraction_exception import FeatureExtraction
+import pandas as pd
 
 
-class FeatureExtractorAnnOne(AbstractFeatureExtractor):
+class FeatureExtractor:
     threshold = 127  # Below is black, above is white since values are already Grayscale
 
     def __init__(self, path):
         self.path = path
 
+    # 1 White/Black
     def get_total_black_pixels(self, path):
         img = cv2.imread(path)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -321,7 +319,7 @@ class FeatureExtractorAnnOne(AbstractFeatureExtractor):
     def get_sub_pixels13(self, path):
         img = cv2.imread(path)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        sub_area = img[0:8, 24:32]
+        sub_area = img[:8, 24:32]
         sub_area = np.sum(sub_area <= self.threshold)
         return sub_area
 
@@ -837,7 +835,7 @@ class FeatureExtractorAnnOne(AbstractFeatureExtractor):
     def get_sub_pixels13_horiz(self, path):
         img = cv2.imread(path)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        sub_area = img[0:8, 24:32]
+        sub_area = img[:8, 24:32]
         horiz_black_pixels = []
         for horiz_idx in range(-7, 8):
             horiz = np.diag(sub_area, horiz_idx)
@@ -877,37 +875,6 @@ class FeatureExtractorAnnOne(AbstractFeatureExtractor):
             nb_of_black_pixels = np.sum(horiz <= self.threshold)
             horiz_black_pixels.append(nb_of_black_pixels)
         return horiz_black_pixels
-
-    def get_edges(self, path) -> list:
-        arr = cv2.imread(path)
-        arr = cv2.cvtColor(arr, cv2.COLOR_BGR2GRAY)
-        edges = cv2.Canny(arr, 100, 200)
-        return edges
-
-    def compute_FFT(self, path) -> list:
-        arr = cv2.imread(path)
-        arr = cv2.cvtColor(arr, cv2.COLOR_BGR2GRAY)
-        f = np.fft.fft2(arr, [10, 10])  # THE SECOND PARAM IS FOR N*N size of returned 2D FFT vector
-        fshift = np.fft.fftshift(f)
-        magnitude_spectrum = 20 * np.log(np.abs(fshift))
-        return magnitude_spectrum
-
-    # 15 Keypoint detector (black/white blobs orientation)
-    def compute_nb_SIFT_keypoints(self, path) -> list:
-        arr = cv2.imread(path)
-        arr = cv2.cvtColor(arr, cv2.COLOR_BGR2GRAY)
-        sift = cv2.SIFT_create(400)
-        kp, des = sift.detectAndCompute(arr, None)
-        # numberOfKeyPoints = len(kp)
-        first_KP_desc = des[0]
-        first_KP_desc_arr = []
-        count = 0
-        for desc in first_KP_desc:
-            if (count == 119):
-                break
-            first_KP_desc_arr.append(int(desc))
-            count = count + 1
-        return first_KP_desc_arr
 
     # 12 directional distribution
     def compute_directional_distribution(self, path) -> list:
@@ -985,10 +952,204 @@ class FeatureExtractorAnnOne(AbstractFeatureExtractor):
     def extract_features(self, path_to_directory: str):
         output_vector: list = []
         vector: list = []
+        dataset = list()
 
         for image in os.listdir(path_to_directory):
             try:
                 path = str(os.path.join(path_to_directory, image))
+
+                print(path)
+
+
+                if path[-11:-8] == "001":
+                    vector.append("0")
+
+                if path[-11:-8] == "002":
+                    vector.append("1")
+
+                if path[-11:-8] == "003":
+                    vector.append("2")
+
+                if path[-11:-8] == "004":
+                    vector.append("3")
+
+                if path[-11:-8] == "005":
+                    vector.append("4")
+
+                if path[-11:-8] == "006":
+                    vector.append("5")
+
+                if path[-11:-8] == "007":
+                    vector.append("6")
+
+                if path[-11:-8] == "008":
+                    vector.append("7")
+
+                if path[-11:-8] == "009":
+                    vector.append("8")
+
+                if path[-11:-8] == "010":
+                    vector.append("9")
+
+                if path[-11:-8] == "011":
+                    vector.append("A")
+
+                if path[-11:-8] == "012":
+                    vector.append("B")
+
+                if path[-11:-8] == "013":
+                    vector.append("C")
+
+                if path[-11:-8] == "014":
+                    vector.append("D")
+
+                if path[-11:-8] == "015":
+                    vector.append("E")
+
+                if path[-11:-8] == "016":
+                    vector.append("F")
+
+                if path[-11:-8] == "017":
+                    vector.append("G")
+
+                if path[-11:-8] == "018":
+                    vector.append("H")
+
+                if path[-11:-8] == "019":
+                    vector.append("I")
+
+                if path[-11:-8] == "020":
+                    vector.append("J")
+
+                if path[-11:-8] == "021":
+                    vector.append("K")
+
+                if path[-11:-8] == "022":
+                    vector.append("L")
+
+                if path[-11:-8] == "023":
+                    vector.append("M")
+
+                if path[-11:-8] == "024":
+                    vector.append("N")
+
+                if path[-11:-8] == "025":
+                    vector.append("O")
+
+                if path[-11:-8] == "026":
+                    vector.append("P")
+
+                if path[-11:-8] == "027":
+                    vector.append("Q")
+
+                if path[-11:-8] == "028":
+                    vector.append("R")
+
+                if path[-11:-8] == "029":
+                    vector.append("S")
+
+                if path[-11:-8] == "030":
+                    vector.append("T")
+
+                if path[-11:-8] == "031":
+                    vector.append("U")
+
+                if path[-11:-8] == "032":
+                    vector.append("V")
+
+                if path[-11:-8] == "033":
+                    vector.append("W")
+
+                if path[-11:-8] == "034":
+                    vector.append("X")
+
+                if path[-11:-8] == "035":
+                    vector.append("Y")
+
+                if path[-11:-8] == "036":
+                    vector.append("Z")
+
+                if path[-11:-8] == "037":
+                    vector.append("a")
+
+                if path[-11:-8] == "038":
+                    vector.append("b")
+
+                if path[-11:-8] == "039":
+                    vector.append("c")
+
+                if path[-11:-8] == "040":
+                    vector.append("d")
+
+                if path[-11:-8] == "041":
+                    vector.append("e")
+
+                if path[-11:-8] == "042":
+                    vector.append("f")
+
+                if path[-11:-8] == "043":
+                    vector.append("g")
+
+                if path[-11:-8] == "044":
+                    vector.append("h")
+
+                if path[-11:-8] == "045":
+                    vector.append("i")
+
+                if path[-11:-8] == "046":
+                    vector.append("j")
+
+                if path[-11:-8] == "047":
+                    vector.append("k")
+
+                if path[-11:-8] == "048":
+                    vector.append("l")
+
+                if path[-11:-8] == "049":
+                    vector.append("m")
+
+                if path[-11:-8] == "050":
+                    vector.append("n")
+
+                if path[-11:-8] == "051":
+                    vector.append("o")
+
+                if path[-11:-8] == "052":
+                    vector.append("p")
+
+                if path[-11:-8] == "053":
+                    vector.append("q")
+
+                if path[-11:-8] == "054":
+                    vector.append("r")
+
+                if path[-11:-8] == "055":
+                    vector.append("s")
+
+                if path[-11:-8] == "056":
+                    vector.append("t")
+
+                if path[-11:-8] == "057":
+                    vector.append("u")
+
+                if path[-11:-8] == "058":
+                    vector.append("v")
+
+                if path[-11:-8] == "059":
+                    vector.append("w")
+
+                if path[-11:-8] == "060":
+                    vector.append("x")
+
+                if path[-11:-8] == "061":
+                    vector.append("y")
+
+                if path[-11:-8] == "062":
+                    vector.append("z")
+
+                print(vector)
+
+
                 vector.append(self.get_total_black_pixels(path))
                 vector.append(self.get_total_white_pixels(path))
 
@@ -1234,33 +1395,19 @@ class FeatureExtractorAnnOne(AbstractFeatureExtractor):
                 for feature in features:
                     vector.append(feature)
 
-                # 4) First KP desc
-                #  to increase the weight of this feature we could append it multiple times
-                # first_KP_desc = self.compute_nb_SIFT_keypoints(path)
-                # for desc in first_KP_desc:
-                #     vector.append(desc)
-
-                # 5) FFT magnitude vector
-                # twoD_FFT_magn_vector = self.compute_FFT(path)
-                # for row in twoD_FFT_magn_vector:
-                #     for val in row:
-                #         vector.append(int(val))
-
-                # 6) edges detection
-                twoD_edges_vector = self.get_edges(path)
-                for row in twoD_edges_vector:
-                    for val in row:
-                        vector.append(int(val))
-
                 print(len(vector))
 
                 output_vector = vector
+                dataset.append(vector)
+                vector= list()
 
             except Exception as e:
-                print("an error occurred here")
-                exc_type, exc_obj, exc_tb = sys.exc_info()
-                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-                print(exc_type, fname, exc_tb.tb_lineno)
-                raise FeatureExtraction(additional_message=e.__str__())
+                raise
 
-        return output_vector
+        return dataset
+
+
+extractor = FeatureExtractor('images')
+test = extractor.extract_features('images')
+df= pd.DataFrame(test)
+df.to_csv('dataset-NEW.csv')
