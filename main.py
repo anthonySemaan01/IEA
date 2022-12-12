@@ -5,8 +5,9 @@ from api.controllers import health_check_controller, image_preprocessing_control
     preprocess_infer_combined, translate_controller, send_BBImage_controller, send_CroppedImage_controller, send_DelatedImage_controller, send_ResizedImage_controller
 
 app = FastAPI(version='1.0', title='IEA backend API',
-              description="Provide different image preprocessing and images-ubyte extraction")
+              description="Provide a detailed image preprocessing and feature extraction pipeline")
 
+# resolve CORS problems related to calling the API from another local server
 app.add_middleware(CORSMiddleware,
                    allow_origins=["*"],
                    allow_credentials=True,

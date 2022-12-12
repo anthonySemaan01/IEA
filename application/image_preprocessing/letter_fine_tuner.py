@@ -46,7 +46,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
 
         return out
 
-    def black_white_converter(self, image_arr: np.ndarray) -> tuple[np.ndarray, str]:
+    def black_white_converter(self, image_arr: np.ndarray):
         try:
             gray_scale = cv2.cvtColor(image_arr, cv2.COLOR_BGR2GRAY)
             (thresh, im_bw) = cv2.threshold(gray_scale, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
@@ -63,7 +63,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
         image_out = im.fromarray(bbox_image)
         image_out.save(str(FileStructure.BBOX_IMAGE_TESTING.value) + "\\tester.png")
 
-    def image_cropper(self, image_arr: np.ndarray, x: int, y: int, width: int, height: int) -> tuple[np.ndarray, str]:
+    def image_cropper(self, image_arr: np.ndarray, x: int, y: int, width: int, height: int):
         try:
             cropped_image = image_arr[x:width, y:height]
             cropped_image_path = str(FileStructure.CROPPED_IMAGES_PATH.value) + "\\tester.png"
@@ -73,9 +73,13 @@ class LetterFineTuner(AbstractLetterFineTuner):
             raise ImagePreprocessingException(additional_message="error while cropping image")
         return cropped_image, cropped_image_path
 
-    def image_resizer(self, image_arr: np.ndarray) -> tuple[np.ndarray, str]:
+    def image_resizer(self, image_arr: np.ndarray, cnn: bool = False):
+        if cnn:
+            size = (28, 28, 1)
+        else:
+            size = (32, 32)
         try:
-            resized_image = cv2.resize(image_arr, (32, 32), cv2.INTER_AREA)
+            resized_image = cv2.resize(image_arr, size, cv2.INTER_AREA)
             resized_image_path = str(FileStructure.RESIZED_IMAGES_PATH.value) + "\\tester.png"
             cv2.imwrite(resized_image_path, resized_image)
         except Exception as e:
@@ -83,7 +87,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
             raise ImagePreprocessingException(additional_message="error while resizing image")
         return resized_image, resized_image_path
 
-    def erosion_dilation(self, image_arr: np.ndarray) -> tuple[np.ndarray, str]:
+    def erosion_dilation(self, image_arr: np.ndarray):
         kernel = np.ones((5, 5), np.uint8)
         try:
             eroded = cv2.erode(image_arr, kernel, iterations=1)
@@ -96,7 +100,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
             raise ImagePreprocessingException(additional_message="error while eroding/dilating image")
         return dilated, eroded_dilated_path
 
-    def letter_finder(self, file: UploadFile = File(...)) -> tuple[ndarray, str]:
+    def letter_finder(self, cnn: bool = False, file: UploadFile = File(...)):
         path = save_file(upload_file=file, destination=str(FileStructure.IMAGES_PATH.value))
         image_arr = image_loader(path=path)
         gray_scale, gray_scale_path = self.black_white_converter(image_arr=image_arr)
@@ -107,7 +111,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
                                                                y=coordinates[0]["y"],
                                                                width=coordinates[1]["x"], height=coordinates[1]["y"])
         dilated_arr, eroded_dilated_path = self.erosion_dilation(image_arr=cropped_image)
-        resized_image, resized_image_path = self.image_resizer(image_arr=dilated_arr)
+        resized_image, resized_image_path = self.image_resizer(image_arr=dilated_arr, cnn=cnn)
 
         image_out = im.fromarray(resized_image)
         image_out.save(str(FileStructure.TESTING_IMAGES_PATH.value) + "\\tester.png")

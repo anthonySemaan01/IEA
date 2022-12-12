@@ -14,7 +14,7 @@ class AbstractLetterFineTuner(ABC):
         pass
 
     @abstractmethod
-    def letter_finder(self, file: UploadFile = File(...)):
+    def letter_finder(self, cnn: bool = False, file: UploadFile = File(...)):
         pass
 
     @abstractmethod
@@ -24,4 +24,3 @@ class AbstractLetterFineTuner(ABC):
     @abstractmethod
     def image_resizer(self, path: str):
         pass
-

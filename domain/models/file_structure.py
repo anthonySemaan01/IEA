@@ -142,3 +142,14 @@ class FileStructure(Enum):
     VECTOR_CLASSE6_MODEL2 = "\\".join(
         [os.path.abspath(os.curdir), "datasets", "training", "vector2", "class6_model2.csv"])
 
+    WEIGHTS_MODEL_5 = "\\".join(
+        [os.path.abspath(os.curdir), "weights", "model5.h5"])
+
+    WEIGHTS_MODEL_8 = "\\".join(
+        [os.path.abspath(os.curdir), "weights", "model8.h5"])
+
+    WEIGHTS_MODEL_9 = "\\".join(
+        [os.path.abspath(os.curdir), "weights", "model9.h5"])
+
+    WEIGHTS_MODEL_CNN = "\\".join(
+        [os.path.abspath(os.curdir), "weights", "cnn-mnist.h5"])
