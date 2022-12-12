@@ -3,7 +3,7 @@
 ![image](https://user-images.githubusercontent.com/92089618/198839952-7636aeda-f613-4133-b25d-f0815a59cf9f.png)
 
 CAM is a character/ digit recognizer web application and its purpose is to help kids learn writing letters and digits and by translating their characters into Arabic.
-Hence, CAM is a modern day translator that aims to broaden the learning of the arabic language for children around the world!
+Hence, CAM is a modern day translator that aims to broaden the learning of the spanish language for children around the world!
 
 Character Classifier is an ensemble learning model used to classify Characters and digits
 

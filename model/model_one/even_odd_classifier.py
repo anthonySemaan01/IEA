@@ -10,6 +10,7 @@ from domain.models.file_structure import FileStructure
 class EvenOddClassifier:
     @staticmethod
     def classify_even_odd(x_test) -> str:
+        out = ""
         knn = KNeighborsClassifier(n_neighbors=3)
         dt = pickle.load(open(str(FileStructure.SAV_DT_EVEN_ODD.value), "rb"))
         svm = pickle.load(open(str(FileStructure.SAV_SVM_EVEN_ODD.value), "rb"))
@@ -31,9 +32,11 @@ class EvenOddClassifier:
         outputs: list = [y_predict_knn, y_predict_dt, y_predict_svm]
         print(outputs)
 
-        # if outputs.count("Even") > outputs.count("Odd"):
-        #     return "Even"
-        # else:
-        #     return "Odd"
+        if outputs.count("Even") > outputs.count("Odd"):
+            out = "Even"
+        else:
+            out = "Odd"
+
+        print(out)
 
         return y_predict_knn

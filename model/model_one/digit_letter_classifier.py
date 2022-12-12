@@ -11,6 +11,8 @@ class DigitLetterClassifier:
     @staticmethod
     def classify_digit_letter(x_test) -> str:
         try:
+
+            out = ""
             knn = KNeighborsClassifier(n_neighbors=5)
             dt = pickle.load(open(str(FileStructure.SAV_DT_DIGIT_LETTER.value), "rb"))
             svm = pickle.load(open(str(FileStructure.SAV_SVM_DIGIT_LETTER.value), "rb"))
@@ -32,10 +34,13 @@ class DigitLetterClassifier:
             outputs: list = [y_predict_knn, y_predict_dt, y_predict_svm]
             print(outputs)
 
-            # if outputs.count("Digit") > outputs.count("Letter"):
-            #     return "Digit"
-            # else:
-            #     return "Letter"
+            if outputs.count("Digit") > outputs.count("Letter"):
+                out = "Digit"
+            else:
+                out = "Letter"
+
+            print(out)
+            
             return y_predict_knn
 
         except Exception as e:

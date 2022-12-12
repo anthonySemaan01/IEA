@@ -10,6 +10,7 @@ from domain.models.file_structure import FileStructure
 class UpperLowerClassifier:
     @staticmethod
     def classify_upper_lower(x_test) -> str:
+        out = ""
         knn = KNeighborsClassifier(n_neighbors=15)
         dt = pickle.load(open(str(FileStructure.SAV_DT_UPPER_LOWER.value), "rb"))
         svm = pickle.load(open(str(FileStructure.SAV_SVM_UPPER_LOWER.value), "rb"))
@@ -31,9 +32,9 @@ class UpperLowerClassifier:
         outputs: list = [y_predict_knn, y_predict_dt, y_predict_svm]
         print(outputs)
 
-        # if outputs.count("Upper") > outputs.count("Lower"):
-        #     return "Upper"
-        # else:
-        #     return "Lower"
+        if outputs.count("Upper") > outputs.count("Lower"):
+            out = "Upper"
+        else:
+            out = "Lower"
 
         return y_predict_knn
