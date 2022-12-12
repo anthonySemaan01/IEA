@@ -18,6 +18,7 @@ class DigitLetterClassifier:
             svm = pickle.load(open(str(FileStructure.SAV_SVM_DIGIT_LETTER.value), "rb"))
 
             x_test_np = np.array(x_test)
+            print(len(x_test_np))
 
             x_test_np = x_test_np.reshape(1, -1)
             df = pd.read_csv(str(FileStructure.VECTOR_DIGIT_LETTER_PATH.value), index_col=0)

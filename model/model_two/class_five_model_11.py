@@ -9,6 +9,7 @@ class ClassFiveModel11Classifier:
     @staticmethod
     def classify_class_Five_model_11(x_test) -> str:
         try:
+            print(len(x_test))
             # TODO
             # find k
             knn = KNeighborsClassifier(n_neighbors=5)

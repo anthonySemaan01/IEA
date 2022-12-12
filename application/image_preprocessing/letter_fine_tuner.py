@@ -75,7 +75,7 @@ class LetterFineTuner(AbstractLetterFineTuner):
 
     def image_resizer(self, image_arr: np.ndarray, cnn: bool = False):
         if cnn:
-            size = (28, 28, 1)
+            size = (28, 28)
         else:
             size = (32, 32)
         try:
