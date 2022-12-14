@@ -2,11 +2,18 @@
 
 ![image](https://user-images.githubusercontent.com/92089618/198839952-7636aeda-f613-4133-b25d-f0815a59cf9f.png)
 
-CAM is a character/ digit recognizer web application and its purpose is to help kids learn writing letters and digits and by translating their characters into Arabic.
-Hence, CAM is a modern day translator that aims to broaden the learning of the spanish language for children around the world!
+CAM is a character/ digit recognizer web application and its purpose is to help kids learn writing letters and digits
+and by translating their characters into Spanish.
+Hence, CAM is a modern day translator that aims to broaden the learning of the Spanish language for children around the
+world!
 
-Character Classifier is an ensemble learning model used to classify Characters and digits
+As part of our initial analysis, we designed the character/digits classifier as an ensemble learning model based only on
+non-parametric learners.
+Ensemble Model 2 reached an 84% accuracy level tested on 500 labels.
 
+In order to diversify our analysis, we tested different parametric learners architectures, starting with single layer
+perceptron to Multi Layer perceptron. To simplify the integration of the models with the API, we created an endpoint for
+a weighted sum ensemble learning model based on 3 different MLP architectures.
 
 ## Installation
 
@@ -17,16 +24,20 @@ We advise to create a virtual environment with python 3.9 as interpreter.
 
 [csv_ensemble2.zip](https://github.com/anthonySemaan01/IEA/files/9919993/csv_ensemble2.zip)
 
-Download and extract these 2 zip folders. CSV files in ensemble1 put them in datasets/training/vector. CSV files in ensemble2 put them in datasets/training/vector2
+These weights are used for both models 1 and 2. For the rest of the models, downloading the weights in ./weights is
+sufficient.
 
-
+Download and extract these 2 zip folders. CSV files in ensemble1 put them in datasets/training/vector. CSV files in
+ensemble2 put them in datasets/training/vector2
 
 ```bash
 pip install -r requirements.txt
 ```
 
 ## File Structure
+
 This API follows a Domain Driven Structure with some changes:
+
 ```bash
 .
 ├── api
@@ -56,11 +67,13 @@ This API follows a Domain Driven Structure with some changes:
 ├── shared
 │   ├── data_handler
 │   └── helper
+│  
+├── weights 
+├── notebooks
 ├── containers.py
 ├── main.py
 └── README.md
 ```
-
 
 ## Usage
 
@@ -72,22 +85,6 @@ uvicorn main:app --reload
 
 this will start the API at port 8000. For easier visualization, surf to http://localhost:8000/docs
 This will give a simple representation of the available endpoints.
-
-### Endpoints
-
-**Health**: Check if the API is working correctly
-
-**image_preprocessing**: Post request which takes an image and preprocess it based on some predefined parameters
-the output series of images are in the ./datasets directory
-
-**preprocessing_training_dataset**: Get request which takes the root directory of your training dataset. The
-preprocessed dataset will be saved in the root directory
-
-**retrain**: Post request which takes an image and a label. The following pair will be added to different csv files
-accounting for the submitted label. In case of error, no come-back is possible.
-
-**preprocessing_inference**: Post request which takes an image and outputs the classification result.
-The preprocessing of the image is done in the background.
 
 ## Acknowledgments
 
