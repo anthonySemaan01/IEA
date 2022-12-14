@@ -1957,15 +1957,15 @@ class FeatureExtractorAnnTwo(AbstractFeatureExtractor):
 
                 # 4) First KP desc
                 #  to increase the weight of this feature we could append it multiple times
-                # first_KP_desc = self.compute_nb_SIFT_keypoints(path)
-                # for desc in first_KP_desc:
-                #     vector.append(desc)
+                first_KP_desc = self.compute_nb_SIFT_keypoints(path)
+                for desc in first_KP_desc:
+                    vector.append(desc)
 
                 # 5) FFT magnitude vector
-                # twoD_FFT_magn_vector = self.compute_FFT(path)
-                # for row in twoD_FFT_magn_vector:
-                #     for val in row:
-                #         vector.append(int(val))
+                twoD_FFT_magn_vector = self.compute_FFT(path)
+                for row in twoD_FFT_magn_vector:
+                    for val in row:
+                        vector.append(int(val))
 
                 # 6) edges detection
                 twoD_edges_vector = self.get_edges(path)
